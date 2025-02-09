@@ -1,0 +1,9 @@
+services:
+  web:
+    build: 
+      args:
+        - HOST=0.0.0.0
+        - PORT=443
+      context: .
+    ports:
+      - "443:443"

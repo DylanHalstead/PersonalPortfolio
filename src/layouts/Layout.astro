@@ -1,0 +1,22 @@
+---
+import "../styles/global.css";
+
+let {pageTitle} = Astro.props
+
+pageTitle = pageTitle ? pageTitle : 'Dylan Halstead'
+---
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="description" content="TODO: ">
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<!-- TODO: add preload for fonts <link rel="preload" href="/fonts/karla/mywofffont.woff2" as="font" type="font/woff2" crossorigin> -->
+		<meta name="generator" content={Astro.generator} />
+		<title>{pageTitle}</title>
+	</head>
+	<body class="text-text-100 bg-background-900 font-karla text-balance">
+		<slot />
+	</body>
+</html>

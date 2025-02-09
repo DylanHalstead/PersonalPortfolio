@@ -1,0 +1,181 @@
+@import "tailwindcss";
+
+/* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+/* karla-200 - latin */
+@font-face {
+  font-display: swap; 
+  font-family: 'Karla';
+  font-style: normal;
+  font-weight: 200;
+  src: url('/fonts/karla/karla-v31-latin-200.woff2') format('woff2');  
+}
+
+/* karla-200italic - latin */
+@font-face {
+  font-display: swap; 
+  font-family: 'Karla';
+  font-style: italic;
+  font-weight: 200;
+  src: url('/fonts/karla/karla-v31-latin-200italic.woff2') format('woff2');  
+}
+
+/* karla-300 - latin */
+@font-face {
+  font-display: swap; 
+  font-family: 'Karla';
+  font-style: normal;
+  font-weight: 300;
+  src: url('/fonts/karla/karla-v31-latin-300.woff2') format('woff2');  
+}
+
+/* karla-300italic - latin */
+@font-face {
+  font-display: swap; 
+  font-family: 'Karla';
+  font-style: italic;
+  font-weight: 300;
+  src: url('/fonts/karla/karla-v31-latin-300italic.woff2') format('woff2');  
+}
+
+/* karla-regular - latin */
+@font-face {
+  font-display: swap; 
+  font-family: 'Karla';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/karla/karla-v31-latin-regular.woff2') format('woff2');  
+}
+
+/* karla-italic - latin */
+@font-face {
+  font-display: swap; 
+  font-family: 'Karla';
+  font-style: italic;
+  font-weight: 400;
+  src: url('/fonts/karla/karla-v31-latin-italic.woff2') format('woff2');  
+}
+
+/* karla-500 - latin */
+@font-face {
+  font-display: swap; 
+  font-family: 'Karla';
+  font-style: normal;
+  font-weight: 500;
+  src: url('/fonts/karla/karla-v31-latin-500.woff2') format('woff2');  
+}
+
+/* karla-500italic - latin */
+@font-face {
+  font-display: swap; 
+  font-family: 'Karla';
+  font-style: italic;
+  font-weight: 500;
+  src: url('/fonts/karla/karla-v31-latin-500italic.woff2') format('woff2');  
+}
+
+/* karla-600 - latin */
+@font-face {
+  font-display: swap; 
+  font-family: 'Karla';
+  font-style: normal;
+  font-weight: 600;
+  src: url('/fonts/karla/karla-v31-latin-600.woff2') format('woff2');  
+}
+
+/* karla-600italic - latin */
+@font-face {
+  font-display: swap; 
+  font-family: 'Karla';
+  font-style: italic;
+  font-weight: 600;
+  src: url('/fonts/karla/karla-v31-latin-600italic.woff2') format('woff2');  
+}
+
+/* karla-700 - latin */
+@font-face {
+  font-display: swap; 
+  font-family: 'Karla';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/fonts/karla/karla-v31-latin-700.woff2') format('woff2');  
+}
+
+/* karla-700italic - latin */
+@font-face {
+  font-display: swap; 
+  font-family: 'Karla';
+  font-style: italic;
+  font-weight: 700;
+  src: url('/fonts/karla/karla-v31-latin-700italic.woff2') format('woff2');  
+}
+
+/* karla-800 - latin */
+@font-face {
+  font-display: swap; 
+  font-family: 'Karla';
+  font-style: normal;
+  font-weight: 800;
+  src: url('/fonts/karla/karla-v31-latin-800.woff2') format('woff2');  
+}
+
+/* karla-800italic - latin */
+@font-face {
+  font-display: swap; 
+  font-family: 'Karla';
+  font-style: italic;
+  font-weight: 800;
+  src: url('/fonts/karla/karla-v31-latin-800italic.woff2') format('woff2');  
+}
+
+
+@theme {
+  --color-text-50: oklch(95.66% 0.007 286.27);
+  --color-text-100: oklch(95.66% 0.007 286.27);
+  --color-text-200: oklch(82.03% 0.028 285.77);
+  --color-text-300: oklch(72.59% 0.045 285.23);
+  --color-text-400: oklch(63.14% 0.060 284.56);
+  --color-text-500: oklch(53.16% 0.079 283.37);
+  --color-text-600: oklch(45.58% 0.065 283.53);
+  --color-text-700: oklch(37.40% 0.053 283.55);
+  --color-text-800: oklch(29.03% 0.036 283.91);
+  --color-text-900: oklch(19.68% 0.022 284.20);
+  --color-text-950: oklch(14.73% 0.011 285.01);
+
+  --color-background-50: oklch(95.66% 0.007 286.27);
+  --color-background-100: oklch(90.99% 0.015 286.10);
+  --color-background-200: oklch(82.03% 0.028 285.77);
+  --color-background-300: oklch(72.59% 0.045 285.23);
+  --color-background-400: oklch(63.14% 0.060 284.56);
+  --color-background-500: oklch(53.16% 0.079 283.37);
+  --color-background-600: oklch(45.58% 0.065 283.53);
+  --color-background-700: oklch(37.40% 0.053 283.55);
+  --color-background-800: oklch(29.03% 0.036 283.91);
+  --color-background-900: oklch(19.68% 0.022 284.20);
+  --color-background-950: oklch(14.73% 0.011 285.01);
+
+  --color-primary-50: oklch(94.21% 0.023 285.95);
+  --color-primary-100: oklch(88.25% 0.048 287.99);
+  --color-primary-200: oklch(76.39% 0.100 286.40);
+  --color-primary-300: oklch(64.60% 0.153 283.82);
+  --color-primary-400: oklch(53.46% 0.203 279.26);
+  --color-primary-500: oklch(43.95% 0.246 271.85);
+  --color-primary-600: oklch(37.63% 0.205 272.65);
+  --color-primary-700: oklch(30.98% 0.165 273.51);
+  --color-primary-800: oklch(24.01% 0.120 275.06);
+  --color-primary-900: oklch(16.65% 0.068 278.65);
+  --color-primary-950: oklch(12.34% 0.040 282.66);
+
+  --color-secondary-50: oklch(98.15% 0.027 93.10);
+  --color-secondary-100: oklch(96.18% 0.051 91.37);
+  --color-secondary-200: oklch(92.84% 0.100 92.14);
+  --color-secondary-300: oklch(89.59% 0.139 91.07);
+  --color-secondary-400: oklch(86.66% 0.165 88.68);
+  --color-secondary-500: oklch(84.03% 0.172 84.08);
+  --color-secondary-600: oklch(71.19% 0.146 84.61);
+  --color-secondary-700: oklch(57.75% 0.118 85.47);
+  --color-secondary-800: oklch(43.46% 0.089 87.06);
+  --color-secondary-900: oklch(27.61% 0.056 89.07);
+  --color-secondary-950: oklch(19.01% 0.039 92.20);
+
+  --font-karla: "Karla", sans-serif; 
+}
