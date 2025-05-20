@@ -1,0 +1,66 @@
+---
+import Clock from '../../assets/clock.svg';
+import Arrow from '../../assets/arrow.svg';
+
+interface Props {
+  color?: 'primary' | 'secondary' | 'light' | 'dark';
+}
+
+const { color } = Astro.props;
+
+const colors: {
+  [key: string]: {
+    bgPrimary: string;
+    textPrimary: string;
+    bgSecondary: string;
+    textSecondary: string;
+  };
+} = {
+  primary: {
+    bgPrimary: 'bg-primary-500',
+    textPrimary: 'text-primary-500',
+    bgSecondary: 'bg-text-50',
+    textSecondary: 'text-text-50',
+  },
+  secondary: {
+    bgPrimary: 'bg-secondary-500',
+    textPrimary: 'text-secondary-500',
+    bgSecondary: 'bg-text-950',
+    textSecondary: 'text-text-950',
+  },
+  light: {
+    bgPrimary: 'bg-text-50',
+    textPrimary: 'text-text-50',
+    bgSecondary: 'bg-text-950',
+    textSecondary: 'text-text-950',
+  },
+  dark: {
+    bgPrimary: 'bg-text-800',
+    textPrimary: 'text-text-800',
+    bgSecondary: 'bg-text-50',
+    textSecondary: 'text-text-50',
+  },
+}
+
+const { bgPrimary, textPrimary, textSecondary, bgSecondary } = colors[color || ''] || colors.light;
+---
+
+<li class:list={[bgPrimary, `p-6`, `rounded-2xl`, `flex` ,`flex-col`, `gap-4`, 'min-w-lg']}>
+  <div class="flex flex-col gap-3">
+    <h3 class:list={['text-3xl', 'font-bold', textSecondary]}>Lorem ipsum odor amet</h3>
+    <p class:list={['text-xl/6', textSecondary, 'font-light', 'opacity-70']}>
+      Lorem ipsum odor amet, consectetuer adiping elit. Arcu etiam fringilla eget iaculis mollis sem netus ad hominum...
+    </p>
+  </div>
+  <div class="flex justify-between items-center mt-4">
+    <div class="flex items-center gap-1">
+      <Clock class:list={['size-6', textSecondary]} />
+      <p class:list={[textSecondary, 'text-xl', 'font-light', 'opacity-70']}>6 min read</p>
+    </div>
+    <p class:list={[bgSecondary, 'rounded-lg', 'p-1.5']}>
+      <a href="#">
+        <Arrow class:list={['size-6', textPrimary]} />
+      </a>
+    </p>
+  </div>
+</li>

@@ -1,0 +1,290 @@
+[
+  {
+    "id": "1",
+    "name": "Go",
+    "description": "GoLang is a statically typed, compiled programming language that is known for its concurrency features and efficient performance.",
+    "sortOrder": 10,
+    "svgSrc": "golang.svg",
+    "type": "Programming Language"
+  },
+  {
+    "id": "2",
+    "name": "TypeScript",
+    "description": "A strongly typed superset of JavaScript that is used to build large-scale web applications.",
+    "sortOrder": 20,
+    "svgSrc": "typescript.svg",
+    "type": "Programming Language"
+  },
+  {
+    "id": "3",
+    "name": "JavaScript",
+    "description": "A single-threaded, interpreted programming language that is primarily known for its use in building interactive web pages.",
+    "sortOrder": 30,
+    "svgSrc": "javascript.svg",
+    "type": "Programming Language"
+  },
+  {
+    "id": "4",
+    "name": "Python",
+    "description": "A high-level, interpreted programming language that is primarily known for its readability and use in scientific computing.",
+    "sortOrder": 40,
+    "svgSrc": "python.svg",
+    "type": "Programming Language"
+  },
+  {
+    "id": "5",
+    "name": "Java",
+    "description": "A object-oriented, compiled programming language known for it's consistent syntax and portability.",
+    "sortOrder": 50,
+    "svgSrc": "java.svg",
+    "type": "Programming Language"
+  },
+  {
+    "id": "6",
+    "name": "Next",
+    "description": "A full-stack framework for building server-side rendered (SSR) web applications using React.",
+    "sortOrder": 60,
+    "svgSrc": "next.svg",
+    "type": "Framework"
+  },
+  {
+    "id": "7",
+    "name": "React",
+    "description": "A JavaScript Library used to build user interfaces/Single Page Applications utilizing JSX and a virtual DOM.",
+    "sortOrder": 70,
+    "svgSrc": "react.svg",
+    "type": "Framework"
+  },
+  {
+    "id": "8",
+    "name": "Astro",
+    "description": "A web framework built for content-driven websites, known for it's performant static site generation and island architecture with support for several frontend frameworks.",
+    "sortOrder": 80,
+    "svgSrc": "astro.svg",
+    "type": "Framework"
+  },
+  {
+    "id": "9",
+    "name": "Svelte",
+    "description": "A UI frontend framework for building performant, interactive web applications known for it's use of compiling to vanilla JS rather than the use of a virtual DOM.",
+    "sortOrder": 90,
+    "svgSrc": "svelte.svg",
+    "type": "Framework"
+  },
+  {
+    "id": "10",
+    "name": "Nuxt",
+    "description": "A full-stack framework for building server-side rendered (SSR) web applications using Vue.js.",
+    "sortOrder": 100,
+    "svgSrc": "nuxt.svg",
+    "type": "Framework"
+  },
+  {
+    "id": "11",
+    "name": "Vue",
+    "description": "A front-end framework for building user interfaces/Single Page Applications with a focus on simplicity and ease of use.",
+    "sortOrder": 110,
+    "svgSrc": "vue.svg",
+    "type": "Framework"
+  },
+  {
+    "id": "12",
+    "name": "Flask",
+    "description": "A lightweight web framework for Python for it's simplicity and ease of use.",
+    "sortOrder": 120,
+    "svgSrc": "flask.svg",
+    "type": "Framework"
+  },
+  {
+    "id": "13",
+    "name": "Express",
+    "description": "A fast and minimalist web framework for Node.js.",
+    "sortOrder": 130,
+    "svgSrc": "express.svg",
+    "type": "Framework"
+  },
+  {
+    "id": "14",
+    "name": "Ionic",
+    "description": "A mobile app development framework for building cross-platform mobile apps using either Angular, React, or Vue.",
+    "sortOrder": 140,
+    "svgSrc": "ionic.svg",
+    "type": "Framework"
+  },
+  {
+    "id": "15",
+    "name": "TensorFlow",
+    "description": "An open-source library for machine and deep learning.",
+    "sortOrder": 150,
+    "svgSrc": "tensorflow.svg",
+    "type": "Tool"
+  },
+  {
+    "id": "16",
+    "name": "OpenCV",
+    "description": "An open-source library used for real-time computer vision and machine learning.",
+    "sortOrder": 160,
+    "svgSrc": "opencv.svg",
+    "type": "Tool"
+  },
+  {
+    "id": "17",
+    "name": "Deno",
+    "description": "A JavaScript runtime with built in TypeScript support, designed to be a modern, secure, and performant.",
+    "sortOrder": 170,
+    "svgSrc": "deno.svg",
+    "type": "Other"
+  },
+  {
+    "id": "18",
+    "name": "Docker",
+    "description": "An open source platform for simplifying the deployment of applications via containerization.",
+    "sortOrder": 180,
+    "svgSrc": "docker.svg",
+    "type": "Tool"
+  },
+  {
+    "id": "19",
+    "name": "AWS",
+    "description": "A cloud computing platform for building, shipping, and running applications in containers.",
+    "sortOrder": 190,
+    "svgSrc": "aws.svg",
+    "type": "Cloud"
+  },
+  {
+    "id": "20",
+    "name": "GCP",
+    "description": "Google Cloud Platform.",
+    "sortOrder": 200,
+    "svgSrc": "gcp.svg",
+    "type": "Cloud"
+  },
+  {
+    "id": "21",
+    "name": "Heroku",
+    "description": "A platform for building, shipping, and running applications in containers.",
+    "sortOrder": 210,
+    "svgSrc": "heroku.svg",
+    "type": "Cloud"
+  },
+  {
+    "id": "22",
+    "name": "Github Actions",
+    "description": "A continuous integration and continuous deployment (CI/CD) platform for building, testing, and deploying code.",
+    "sortOrder": 220,
+    "svgSrc": "github-actions.svg",
+    "type": "Tool"
+  },
+  {
+    "id": "23",
+    "name": "Auth0",
+    "description": "An authentication platform for building secure applications.",
+    "sortOrder": 230,
+    "svgSrc": "auth0.svg",
+    "type": "Tool"
+  },
+  {
+    "id": "24",
+    "name": "PostgreSQL",
+    "description": "An open-source relational database management system.",
+    "sortOrder": 240,
+    "svgSrc": "postgresql.svg",
+    "type": "Database"
+  },
+  {
+    "id": "25",
+    "name": "MongoDB",
+    "description": "A document-oriented NoSQL database that is known for its scalability and flexibility.",
+    "sortOrder": 250,
+    "svgSrc": "mongodb.svg",
+    "type": "Database"
+  },
+  {
+    "id": "26",
+    "name": "MySQL",
+    "description": "An open-source relational database management system.",
+    "sortOrder": 260,
+    "svgSrc": "mysql.svg",
+    "type": "Database"
+  },
+  {
+    "id": "27",
+    "name": "SQLite",
+    "description": "A lightweight, serverless, and zero-configuration SQL database engine.",
+    "sortOrder": 270,
+    "svgSrc": "sqlite.svg",
+    "type": "Database"
+  },
+  {
+    "id": "28",
+    "name": "Tailwind",
+    "description": "A utility-first CSS framework with a focus on simplicity, customizability, and speed.",
+    "sortOrder": 280,
+    "svgSrc": "tailwind.svg",
+    "type": "Design Framework"
+  },
+  {
+    "id": "29",
+    "name": "Bootstrap",
+    "description": "A plug and play CSS framework for building responsive websites.",
+    "sortOrder": 290,
+    "svgSrc": "bootstrap.svg",
+    "type": "Design Framework"
+  },
+  {
+    "id": "30",
+    "name": "Material UI",
+    "description": "An open-source React component library that implements Google's Material Design.",
+    "sortOrder": 300,
+    "svgSrc": "material-ui.svg",
+    "type": "Design Framework"
+  },
+  {
+    "id": "31",
+    "name": "Node",
+    "description": "A javascript runtime built on chrome's v8 engine.",
+    "sortOrder": 300,
+    "svgSrc": "node.svg",
+    "type": "Other"
+  },
+  {
+    "id": "32",
+    "name": "Figma",
+    "description": "A design tool for creating user interfaces and prototyping.",
+    "sortOrder": 310,
+    "svgSrc": "figma.svg",
+    "type": "Tool"
+  },
+  {
+    "id": "33",
+    "name": "PHP",
+    "description": "A server-side scripting language that powers the majority of the web.",
+    "sortOrder": 320,
+    "svgSrc": "php.svg",
+    "type": "Programming Language"
+  },
+  {
+    "id": "34",
+    "name": "HTML",
+    "description": "A markup language for creating web pages.",
+    "sortOrder": 330,
+    "svgSrc": "html.svg",
+    "type": "Programming Language"
+  },
+  {
+    "id": "35",
+    "name": "CSS",
+    "description": "A style sheet language for describing the presentation of a document written in HTML.",
+    "sortOrder": 340,
+    "svgSrc": "css.svg",
+    "type": "Programming Language"
+  },
+  {
+    "id": "36",
+    "name": "Android",
+    "description": "An open-source operating system for mobile devices.",
+    "sortOrder": 350,
+    "svgSrc": "android.svg",
+    "type": "Other"
+  }
+]

@@ -1,9 +1,8 @@
 services:
   web:
-    build: 
+    build:
       args:
-        - HOST=0.0.0.0
-        - PORT=443
+        - PORT=8080
       context: .
     ports:
-      - "443:443"
+      - "8080:8080"

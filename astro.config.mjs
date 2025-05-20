@@ -1,14 +1,28 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
-import deno from "@deno/astro-adapter";
-import process from "node:process";
+import svelte from "@astrojs/svelte";
 
 // https://astro.build/config
 export default defineConfig({
-  vite: { plugins: [tailwindcss()] },
-  output: "server",
-  adapter: deno(
-    { port: process.env.PORT, hostname: process.env.HOSTNAME },
-  ),
+  vite: {
+    plugins: [
+      // @ts-ignore - version mismatch between vite and tailwind
+      tailwindcss(),
+    ],
+  },
+  integrations: [
+    svelte({
+      include: ["**/svelte/*.svelte"],
+    }),
+  ],
+  output: "static",
+  prefetch: {
+    prefetchAll: true,
+    defaultStrategy: "viewport",
+  },
+  experimental: {
+    clientPrerender: true,
+    contentIntellisense: true,
+  },
 });

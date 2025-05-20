@@ -1,7 +1,18 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import CallToAction from '../components/astro/sections/CallToAction.astro';
+import Posts from '../components/astro/sections/Posts.astro';
+import AboutMe from '../components/astro/sections/AboutMe.astro';
+import ProjectGallery from '../components/svelte/ProjectGallery.svelte';
+import { getCollection } from 'astro:content';
+
+const projects = await getCollection('projects');
+const tags = await getCollection('tags');
 ---
 
 <Layout pageTitle="Dylan Halstead">
-	<h1 class="text-8xl">Hello World</h1>
+	<CallToAction />
+	<Posts />
+	<AboutMe />
+	<ProjectGallery client:load projects={projects} tags={tags} />
 </Layout>

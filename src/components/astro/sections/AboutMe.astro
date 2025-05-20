@@ -1,0 +1,30 @@
+---
+import Image from 'astro/components/Image.astro';
+import ViewMoreLink from '../ViewMoreLink.astro';
+import AboutMeGraphic from '../../../assets/about_me.jpg'
+import LinkedIn from '../../../assets/linkedin.svg';
+import Github from '../../../assets/github.svg';
+---
+
+<div class="flex px-96 gap-20">
+  <!-- TODO: fix if text is larger height, then image is stretched -->
+  <Image src={AboutMeGraphic} alt="About Me Graphic" width={750} class="border border-text-50 rounded-lg" />
+  <div class="flex flex-col justify-between">
+    <div>
+      <h2 class="text-8xl/26 font-medium tracking-tightest">
+        More About Me
+      </h2>
+      <p class="text-2xl/10 text-text-50/75">
+        Hi, I'm Dylan! I'm a software engineer based out of Charlotte, NC with a passion for building scalable, elegant software solutions. With my experience, I've been able to create applications that not only look great but scale efficiently to meet demanding requirements. Whether architecting microservices, optimizing system performance, or crafting intuitive user interfaces, I approach each aspect with the same enthusiasm and attention to detail.
+      </p>
+    </div>
+    <div class="text-primary-300 text-3xl/10 flex justify-between font-bold">
+      <ViewMoreLink href="">
+        <LinkedIn class="size-10" />
+      </ViewMoreLink>
+      <ViewMoreLink href="">
+        <Github class="size-10" />
+      </ViewMoreLink>
+    </div>
+  </div>
+</div>

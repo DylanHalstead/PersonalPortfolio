@@ -1,0 +1,28 @@
+---
+import Arrow from '../../../assets/arrow.svg';
+import BlogCard from '../BlogCard.astro';
+---
+
+<div class="flex pl-96 content-center">
+  <div class="max-w-2/5 pr-12 flex flex-col justify-between">
+    <div>
+      <h2 class="text-8xl/26 font-medium tracking-tightest">
+        Check Out My Posts
+      </h2>
+      <p class="text-2xl/10 text-text-50/75">
+        Check out my latest articles on software development, architecture, and everything in between written from hands-on experience.
+      </p>
+    </div>
+    <p class="flex text-primary-300 items-center text-2xl"><a href="">Explore All</a> <Arrow class='size-6'} /></p>
+  </div>
+
+  <!-- Scrollable horizontal list -->
+  <div class="flex-1 overflow-x-auto">
+    <!-- TODO: transparent gradient on left? -->
+    <ul class="flex gap-12 flex-nowrap p-3">
+      <BlogCard color="primary" />
+      <BlogCard color="light" />
+      <BlogCard color="secondary" />
+    </ul>
+  </div>
+</div>

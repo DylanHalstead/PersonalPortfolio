@@ -1,5 +1,7 @@
 ---
 import "../styles/global.css";
+import Navbar from "../components/astro/Navbar.astro";
+import Footer from "../components/astro/Footer.astro";
 
 let {pageTitle} = Astro.props
 
@@ -16,7 +18,9 @@ pageTitle = pageTitle ? pageTitle : 'Dylan Halstead'
 		<meta name="generator" content={Astro.generator} />
 		<title>{pageTitle}</title>
 	</head>
-	<body class="text-text-100 bg-background-900 font-karla text-balance">
+	<body class="text-text-100 bg-background-950 font-karla">
+		<Navbar />
 		<slot />
+		<Footer />
 	</body>
 </html>

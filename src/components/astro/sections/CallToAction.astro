@@ -1,0 +1,50 @@
+---
+import Bezier from '../../../assets/bezier.svg';
+import Servers from '../../../assets/servers.svg';
+import GithubAction from '../../../assets/github-action.svg';
+import LinkingShapes from '../../../assets/linking_shapes.svg';
+import ServicesGraphic from '../../../assets/services_graphic.svg';
+import CallToActionBullet from '../CallToActionBullet.astro';
+---
+
+<div class="flex px-96 gap-48">
+  <div class="flex-3/5">
+    <div class="flex flex-col gap-6">
+      <h2 class="text-8xl/26 font-medium tracking-tightest">
+        Building <span class="font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-primary-400 pr-1">World-Class</span> Software Solutions
+      </h2>
+      <p class="text-2xl/10 text-text-50/75">
+        Developing scalable, performant software solutions designed with efficiency, reliability, and modularity top of mind. Delivering quality at every layer.
+      </p>
+    </div>
+    <ul class="grid gap-4 mt-12">
+      <CallToActionBullet>
+        <Bezier class={'size-10 text-secondary-500'}/>
+        <p class="text-2xl text-text-50/75 font-light">
+          Iterating on figma designs to optimize UI/UX
+        </p>
+      </CallToActionBullet>
+      <CallToActionBullet>
+        <Servers class={'size-10 text-secondary-500'}/>
+        <p class="text-2xl text-text-50/75 font-light">
+          Building maintainable, scalable, and performant backends
+        </p>
+      </CallToActionBullet>
+      <CallToActionBullet>
+        <LinkingShapes class={'size-10 text-secondary-500'}/>
+        <p class="text-2xl text-text-50/75 font-light">
+          Connecting services via containerization, authentication, and API's
+        </p>
+      </CallToActionBullet>
+      <CallToActionBullet>
+        <GithubAction class={'size-10 text-secondary-500 stroke-current stroke-1.5'}/>
+        <p class="text-2xl text-text-50/75 font-light">
+          Automating building and testing through CI/CD pipelines
+        </p>
+      </CallToActionBullet>
+    </ul>
+  </div>
+  <div class="flex-2/5">
+    <ServicesGraphic/>
+  </div>
+</div>
