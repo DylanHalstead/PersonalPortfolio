@@ -36,6 +36,7 @@ const projects = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
+    date: z.string().transform((str) => new Date(str)),
     imageSrc: z.string().optional(),
     deploymentUrl: z.string().optional(),
     sourceUrl: z.string().optional(),

@@ -14,5 +14,5 @@ const tags = await getCollection('tags');
 	<CallToAction />
 	<Posts />
 	<AboutMe />
-	<ProjectGallery client:load projects={projects} tags={tags} />
+	<ProjectGallery client:only="svelte" projects={projects} tags={tags} />
 </Layout>

@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@astrojs/svelte": "^7.0.13",
+    "@sveltejs/enhanced-img": "^0.6.0",
     "@tailwindcss/vite": "^4.1.7",
     "astro": "^5.7.13",
     "svelte": "^5.30.2",
