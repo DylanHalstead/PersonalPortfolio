@@ -16,7 +16,7 @@
 
   const colors = { 
     base: { color: "#5B5B5B", opacity: 0.5 },
-    active: { color: "#3A31D8", opacity: 1 }
+    active: { color: "#5f56fc", opacity: 1 }
   };
   // This controls the radius of the glow and gravity
   const threshold = 120;
