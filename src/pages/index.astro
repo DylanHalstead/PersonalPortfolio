@@ -5,6 +5,7 @@ import Posts from '../components/astro/sections/Posts.astro';
 import AboutMe from '../components/astro/sections/AboutMe.astro';
 import ProjectGallery from '../components/svelte/ProjectGallery.svelte';
 import { getCollection } from 'astro:content';
+import InteractiveGlowingGrid from '../components/svelte/InteractiveGlowingGrid.svelte';
 
 const projects = await getCollection('projects');
 const tags = await getCollection('tags');
@@ -15,4 +16,22 @@ const tags = await getCollection('tags');
 	<Posts />
 	<AboutMe />
 	<ProjectGallery client:only="svelte" projects={projects} tags={tags} />
+	<div class="flex flex-col items-center justify-center m-24 w-fit mx-auto">
+		<InteractiveGlowingGrid client:only="svelte">
+			<div class="flex flex-col items-center justify-center p-36">
+				<!-- TODO: make scrolling text animation -->
+				<h1 class="text-4xl font-bold">Want to work together?</h1>
+				<p class="text-lg">Reach out to me at <a class="text-blue-500 font-semibold" href="mailto:hey@dylanhalstead.com">hey@dylanhalstead.com</a></p>
+			</div>
+		</InteractiveGlowingGrid>
+	</div>
+	<div class="flex flex-col items-center justify-center m-24 w-fit mx-auto">
+		<InteractiveGlowingGrid client:only="svelte" enableInertia={true}>
+			<div class="flex flex-col items-center justify-center p-36">
+				<!-- TODO: make scrolling text animation -->
+				<h1 class="text-4xl font-bold">Want to work together?</h1>
+				<p class="text-lg">Reach out to me at <a class="text-blue-500 font-semibold" href="mailto:hey@dylanhalstead.com">hey@dylanhalstead.com</a></p>
+			</div>
+		</InteractiveGlowingGrid>
+	</div>
 </Layout>
