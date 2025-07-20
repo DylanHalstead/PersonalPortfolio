@@ -116,24 +116,26 @@
   </h2>
   <div class="mb-8">
     <h2 class="text-2xl font-bold mb-4">Filter by Tags</h2>
-    <ScrollableList gap="gap-2">
-      {#each sortedTags as tag}
-        <li class="flex-shrink-0">
-          <button
-            class="border-2 px-3 py-2 rounded-full transition-colors duration-200 flex items-center gap-2 cursor-pointer {selectedTags.includes(tag.id) 
-              ? 'text-primary-400' 
-              : 'bg-background-900 hover:bg-background-800 text-text-100 border-text-50/25'}"
-            on:click={() => toggleTag(tag.id)}
-          >
-            <span class="size-6">
-              {@html cachedSvgs[tag.data.svgSrc] || cachedSvgs['/tags/default.svg']}
-            </span>
-            <p class="text-md">
-              {tag.data.name}
-            </p>
-          </button>
-        </li>
-      {/each}
+    <ScrollableList>
+      <ul class="flex flex-nowrap pb-4 gap-2">
+        {#each sortedTags as tag}
+          <li class="flex-shrink-0">
+            <button
+              class="border-2 px-3 py-2 rounded-full transition-colors duration-200 flex items-center gap-2 cursor-pointer {selectedTags.includes(tag.id) 
+                ? 'text-primary-400' 
+                : 'bg-background-900 hover:bg-background-800 text-text-100 border-text-50/25'}"
+              on:click={() => toggleTag(tag.id)}
+            >
+              <span class="size-6">
+                {@html cachedSvgs[tag.data.svgSrc] || cachedSvgs['/tags/default.svg']}
+              </span>
+              <p class="text-md">
+                {tag.data.name}
+              </p>
+            </button>
+          </li>
+        {/each}
+      </ul>
     </ScrollableList>
   </div>
   

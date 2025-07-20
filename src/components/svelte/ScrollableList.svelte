@@ -17,7 +17,6 @@
   import { onMount } from 'svelte';
   import { fade } from 'svelte/transition';
 
-  export let gap = 'gap-12';
   export let fadeWidth = 'w-12';
   export let fadeColor = 'from-background-950';
   export let fadeDuration = 200;
@@ -61,9 +60,7 @@
     bind:this={listWrapper}
     on:scroll={updateFadeState}
   >
-    <ul class="flex flex-nowrap pb-4 {gap}">
-      <slot />
-    </ul>
+    <slot />
   </div>
   
   {#if showLeftFade}
