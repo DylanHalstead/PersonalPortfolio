@@ -3,7 +3,7 @@ name: Deploy to Self-Hosted Runner
 on:
   push:
     tags:
-      - 'release-*'
+      - 'v*'
     branches:
       # TODO: Remove this after testing
       - main

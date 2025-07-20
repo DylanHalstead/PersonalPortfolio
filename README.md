@@ -1,50 +1,94 @@
-# Astro Starter Kit: Basics
+# Personal Portfolio
 
-```sh
-npm create astro@latest -- --template basics
+My personal website used to be a portfolio showcase; used to show previous work
+and blog content.
+
+## ✨ Features
+
+- 🚀 **Interactive, fluid animations** with GSAP, Tailwind, and Svelte
+  interactivity
+- 📦 **Static site generation** powered by Astro's island architecture creating
+  a fast, performant experience for users
+- 🐳 **Self-hosted site hosting** utilizing containerization w/Docker,
+  self-hosted GA runners, cloudflare runners, and NGINX
+- 🔍 **SEO-optimized** with proper metadata, canonical URLs, and social media
+  tags
+- 📝 **Blog content** with Astro's content collections
+
+## 🏗️ Project Structure
+
+This project is following the
+[Astro project structure](https://docs.astro.build/en/basics/project-structure/):
+
 ```
-
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
+│
 ├── src/
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── assets/                 # Build-time assets
+│   ├── components/             # Component library
+│   │   ├── astro/
+│   │   └── svelte/
+│   ├── content/                # Content collections
+│   │   ├── config.ts           # Content collections configuration
+│   │   ├── data/
+│   │   │   ├── blog/           # Blog articles (Markdown)
+│   │   │   ├── projects.json   # Previous work and projects
+│   │   │   └── tags.json       # Tags used to categorize projects
+│   ├── layouts/                # Reusable page layouts
+│   ├── pages/                  # Astro pages/routes
+│   ├── styles/                 # Global styles/Tailwind configuration
+├── public/                     # Static, client-side assets
+├── dist/                       # Build output
+└── .github/workflows/          # CI/CD pipelines
 ```
 
-To learn more about the folder structure of an Astro project, refer to
-[our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## 🚀 Local Development
 
-## 🧞 Commands
+### Prerequisites
 
-All commands are run from the root of the project, from a terminal:
+- [Node.js >= 22](https://nodejs.org/en/download)
+- [PNPM >= 10](https://pnpm.io/installation)
+- [Docker](https://docs.docker.com/engine/install/)
+  - Optional, but recommended for containerized development
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+### Quick Start
 
-## 👀 Want to learn more?
+1. **Install dependencies**
+   ```bash
+   pnpm install
+   ```
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into
-our [Discord server](https://astro.build/chat).
+2. **Start development server**
+   ```bash
+   pnpm dev
+   ```
+   The site will be available at `http://localhost:4321`
+
+### Docker Development
+
+For containerized development:
+
+```bash
+# Build and run with Docker Compose
+pnpm run build:docker
+
+# Or manually with Docker
+docker build -t personal-portfolio .
+docker run -p 8080:8080 personal-portfolio
+```
+
+## 🚀 Deployment
+
+The site is automatically deployed via
+[GitHub Actions](https://github.com/features/actions). To deploy a new release,
+create a tagged release with a name starting with `v`. Note that this sites
+CI/CD is ran on a
+[self-hosted runner](https://docs.github.com/en/actions/concepts/runners/about-self-hosted-runners).
+The main runner is hosted on my personal server, and the site's container is
+proxied through a
+[Cloudflare tunnel](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/).
+
+## 📄 License
+
+This project is licensed under the [GNU General Public License v3.0](LICENSE).
+The TLDR being feel free to use this code as reference, inspiration, or copy
+what you would like to use! _(as long as it's not for commercialization)_
