@@ -8,6 +8,7 @@ let {pageTitle} = Astro.props
 pageTitle = pageTitle ? pageTitle : 'Dylan Halstead'
 
 const description = "Dylan Halstead - Software Engineer from Charlotte, NC building performant, scalable software solutions."
+const image = "https://storage.googleapis.com/halstead_portfolio_images/Personal_Portfolio.png"
 ---
 <!doctype html>
 <html lang="en" class="scroll-smooth">
@@ -25,7 +26,26 @@ const description = "Dylan Halstead - Software Engineer from Charlotte, NC build
 		<meta property="og:url" content="https://dylanhalstead.com/" />
 		<meta property="og:title" content={pageTitle} />
 		<meta property="og:description" content={description} />
-		<meta property="og:image" content="https://storage.googleapis.com/halstead_portfolio_images/Personal_Portfolio.png" />
+		<meta property="og:image" content={image} />
+		<meta property="og:site_name" content="Dylan Halstead" />
+		<meta property="og:locale" content="en_US" />
+		
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content="https://dylanhalstead.com/" />
+		<meta property="twitter:title" content={pageTitle} />
+		<meta property="twitter:description" content={description} />
+		<meta property="twitter:image" content={image} />
+		
+		<!-- Additional SEO and Social Tags -->
+		<meta name="author" content="Dylan Halstead" />
+		<meta name="keywords" content="software engineer, web developer, backend, Charlotte NC, full stack, software development, programming, coding" />
+		<meta name="robots" content="index, follow" />
+		<meta name="theme-color" content="#0f0f23" />
+		<meta name="msapplication-TileColor" content="#0f0f23" />
+		
+		<!-- Canonical URL -->
+		<link rel="canonical" href="https://dylanhalstead.com/" />
 		
 		<!--Font Preloads -->
 		<link rel="preload" href="/fonts/karla/karla-v31-latin-200.woff2" as="font" type="font/woff2" crossorigin>
@@ -43,7 +63,6 @@ const description = "Dylan Halstead - Software Engineer from Charlotte, NC build
 		<link rel="preload" href="/fonts/karla/karla-v31-latin-800.woff2" as="font" type="font/woff2" crossorigin>
 		<link rel="preload" href="/fonts/karla/karla-v31-latin-800italic.woff2" as="font" type="font/woff2" crossorigin>
 		<link rel="preload" href="/fonts/lot/lot.woff2" as="font" type="font/woff2" crossorigin>
-		
 	</head>
 	<body class="text-text-100 bg-background-950 font-karla min-h-screen flex flex-col justify-between">
 		<Navbar />
