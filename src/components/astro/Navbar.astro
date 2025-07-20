@@ -2,7 +2,6 @@
 const currentPath = Astro.url.pathname;
 const isHomePage = currentPath === '/';
 const isBlogPage = currentPath === '/blog';
-// TODO: figure out better way to handle navabr not show on home top load, but show otherwise anywhere else
 ---
 
 <header class:list={['fixed top-0 left-0 right-0 z-50 transition-transform duration-300 backdrop-blur-md sm:border-b border-text-50/10', isHomePage && '-translate-y-full']} id="navbar">

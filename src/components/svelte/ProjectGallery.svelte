@@ -146,7 +146,6 @@
         on:click={() => openModal(project)}
       >
         <div class="bg-background-900 border-2 border-text-50/25 rounded-xl transition-transform duration-200 hover:scale-105 cursor-pointer">
-          <!-- TODO: verify this lazy is needed/wanted -->
           <enhanced:img 
             src={project.data.imageSrc || "/projects/fallback.png"} 
             alt={project.data.title}

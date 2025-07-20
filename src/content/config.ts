@@ -43,6 +43,4 @@ const projects = defineCollection({
   }),
 });
 
-// TODO: figure out how to reference tags in projects (use id? name?)
-
 export const collections = { blog, projects, tags };
