@@ -1,0 +1,24 @@
+---
+import AstroLogo from "../../assets/astro.svg";
+import SvelteLogo from "../../assets/svelte.svg";
+import TailwindLogo from "../../assets/tailwind.svg";
+import Section from "../astro/sections/Section.astro";
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-stone-900 text-white px-6 py-4">
+    <Section>
+        <div class="text-sm flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+            <div>
+                © {currentYear} Dylan Halstead. All rights reserved.
+            </div>
+            <div class="flex space-x-4 md:mt-0 items-center">
+                <p>Powered by:</p>
+                <AstroLogo class="size-6 text-white" />
+                <SvelteLogo class="size-6 text-white" />
+                <TailwindLogo class="size-6 text-white" />
+            </div>
+        </div>
+    </Section>
+</footer>

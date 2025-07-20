@@ -1,0 +1,51 @@
+---
+import Bezier from '../../../assets/bezier.svg';
+import Servers from '../../../assets/servers.svg';
+import GithubAction from '../../../assets/github-action.svg';
+import LinkingShapes from '../../../assets/linking_shapes.svg';
+import CallToActionBullet from '../CallToActionBullet.astro';
+import ServicesAnimation from '../../svelte/ServicesAnimation.svelte';
+---
+
+<!-- TODO: look into using container mx-auto -->
+<div class="flex flex-col lg:flex-row gap-12 lg:gap-48">
+  <div class="flex-3/5">
+    <div class="flex flex-col gap-6">
+      <h2 class="text-6xl/16 xl:text-7xl/20 2xl:text-8xl/26 font-medium tracking-tightest">
+        Building <span class="font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-primary-400 pr-1">World-Class</span> Software Solutions
+      </h2>
+      <p class="text-lg/6 lg:text-xl/8 xl:text-2xl/10 text-text-50/75">
+        Developing scalable, performant software solutions designed with efficiency, reliability, and modularity top of mind (delivering quality at every layer).
+      </p>
+    </div>
+    <ul class="grid gap-4 mt-12">
+      <CallToActionBullet>
+        <Bezier class={'size-6 md:size-8 lg:size-10 min-w-6 md:min-w-8 lg:min-w-10 text-secondary-500'}/>
+        <p class="text-lg/6 lg:text-xl/8 xl:text-2xl/10 text-text-50/75 font-light">
+          Iterating on figma designs to optimize UI/UX
+        </p>
+      </CallToActionBullet>
+      <CallToActionBullet>
+        <Servers class={'size-6 md:size-8 lg:size-10 min-w-6 md:min-w-8 lg:min-w-10 text-secondary-500'}/>
+        <p class="text-lg/6 lg:text-xl/8 xl:text-2xl/10 text-text-50/75 font-light">
+          Building maintainable, scalable, and performant backends
+        </p>
+      </CallToActionBullet>
+      <CallToActionBullet>
+        <LinkingShapes class={'size-6 md:size-8 lg:size-10 min-w-6 md:min-w-8 lg:min-w-10 text-secondary-500'}/>
+        <p class="text-lg/6 lg:text-xl/8 xl:text-2xl/10 text-text-50/75 font-light">
+          Connecting services via containerization, authentication, and API's
+        </p>
+      </CallToActionBullet>
+      <CallToActionBullet>
+        <GithubAction class={'size-6 md:size-8 lg:size-10 min-w-6 md:min-w-8 lg:min-w-10 text-secondary-500 stroke-current stroke-1.5'}/>
+        <p class="text-lg/6 lg:text-xl/8 xl:text-2xl/10 text-text-50/75 font-light">
+          Automating building and testing through CI/CD pipelines
+        </p>
+      </CallToActionBullet>
+    </ul>
+  </div>
+  <div class="flex-2/5">
+    <ServicesAnimation client:only="svelte"/>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+---
+import { getEntry, getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Section from '../../components/astro/sections/Section.astro';
+import Prose from '../../components/astro/Prose.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.id },
+  }));
+}
+
+const { slug } = Astro.params;
+const post = await getEntry('blog', slug);
+if (!post) {
+  return Astro.redirect('/blog');
+}
+
+const {title, pubDate, updatedDate, tags} = post.data;
+const { Content } = await render(post);
+---
+
+<Layout pageTitle={title}>
+  <Section>
+    <div class="my-32">
+      <div class="mb-12 space-y-4">
+        <h1 class="text-6xl xl:text-7xl 2xl:text-8xl font-medium tracking-tightest">{title}</h1>
+        <div class="flex justify-between text-text-50/75 text-base md:text-lg lg:text-xl">
+          <p>Published: {pubDate.toLocaleDateString()}</p>
+          {updatedDate && <p>Updated: {updatedDate.toLocaleDateString()}</p>}
+        </div>
+        <div class="flex gap-2 flex-wrap">
+          {tags.map((tag) => (
+            <span
+              class="rounded-full bg-primary-100 px-2.5 py-0.5 text-sm whitespace-nowrap text-primary-600"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <Prose>
+        <Content />
+      </Prose>
+    </div>
+  </Section>
+</Layout>

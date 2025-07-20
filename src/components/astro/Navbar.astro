@@ -1,0 +1,379 @@
+---
+const currentPath = Astro.url.pathname;
+const isHomePage = currentPath === '/';
+const isBlogPage = currentPath === '/blog';
+// TODO: figure out better way to handle navabr not show on home top load, but show otherwise anywhere else
+---
+
+<header class:list={['fixed top-0 left-0 right-0 z-50 transition-transform duration-300 backdrop-blur-md sm:border-b border-text-50/10', isHomePage && '-translate-y-full']} id="navbar">
+  <div class="relative flex max-w-screen-xl flex-col overflow-hidden px-12 py-4 sm:mx-auto sm:flex-row sm:justify-between">
+    <div class="flex items-center justify-between sm:justify-start">
+      <p class="font-lot text-4xl text-primary-200 cursor-default select-none">
+        DH
+      </p>
+      <button class="cursor-pointer sm:hidden" id="mobile-menu-toggle">
+        <span class="sr-only">Toggle menu</span>
+        <div>
+          <div class="grid justify-items-center items-center gap-.5 h-6 w-6 ml-auto">
+            <span class="hamburger-line h-0.5 w-6 rounded-full bg-text-50 transition-all"></span>
+            <span class="hamburger-line h-0.5 w-6 rounded-full bg-text-50 transition-all"></span>
+            <span class="hamburger-line h-0.5 w-6 rounded-full bg-text-50 transition-all"></span>
+          </div>
+        </div>
+      </button>
+    </div>
+    <nav aria-labelledby="header-navigation" class="flex max-h-0 w-full flex-col items-center sm:justify-end justify-between overflow-hidden transition-all duration-300 sm:max-h-full sm:flex-row sm:items-start" id="mobile-nav">
+      <h2 class="sr-only" id="header-navigation">Header navigation</h2>
+      <ul class="flex flex-col items-center sm:flex-row my-autotext-primary-200 cursor-default w-full sm:w-auto text-lg">
+        <li class="w-full sm:w-auto border-b border-text-50/10 sm:border-b-0 sm:px-2">
+          <a href={isHomePage ? '#hero' : '/'} id="nav-home" class:list={['block w-full text-center py-2 sm:py-2 sm:px-4 sm:block sm:w-auto transition-all duration-150', !isHomePage ? 'text-stone-400 hover:text-primary-300' : 'text-primary-200 font-bold']}>Home</a>
+        </li>
+        <li class="w-full sm:w-auto border-b border-text-50/10 sm:border-b-0 sm:px-2">
+          <a href="/#about" id="nav-about" class:list={['block w-full text-center py-2 sm:py-2 sm:px-4 sm:block sm:w-auto transition-all duration-150', !isHomePage ? 'text-stone-400 hover:text-primary-300' : 'text-primary-200 font-bold']}>About Me</a>
+        </li>
+        <li class="w-full sm:w-auto border-b border-text-50/10 sm:border-b-0 sm:px-2">
+          <a href="/#projects" id="nav-projects" class:list={['block w-full text-center py-2 sm:py-2 sm:px-4 sm:block sm:w-auto transition-all duration-150', !isHomePage ? 'text-stone-400 hover:text-primary-300' : 'text-primary-200 font-bold']}>Projects</a>
+        </li>
+        <li class="w-full sm:w-auto sm:px-2">
+          <a href="/blog" id="nav-blog" class:list={['block w-full text-center py-2 sm:py-2 sm:px-4 sm:block sm:w-auto transition-all duration-150', !isBlogPage ? 'text-stone-400 hover:text-primary-300' : 'text-primary-200 font-bold']}>Blog</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<script>
+  /**
+   * Used to handle navbar scroll behavior, primarily for home page
+   * If on home page, hide the navbar on load in (to have entire screen filled with hero section)
+   */
+  class NavbarController {
+    private readonly TOP_THRESHOLD = 100;
+    private readonly isHomePage = window.location.pathname === '/';
+    private navbar!: HTMLElement;
+    private mobileMenuToggle!: HTMLButtonElement;
+    private mobileNav!: HTMLElement;
+    private hamburgerLines!: NodeListOf<HTMLElement>;
+    private isMobileMenuOpen = false;
+    private scrollTimeout: number | null = null;
+    private heroSection: HTMLElement | null = null;
+
+    constructor() {
+      const navbarElement = document.getElementById('navbar');
+      if (!navbarElement) {
+        console.error('Navbar element not found');
+        return;
+      }
+      this.navbar = navbarElement;
+
+      const toggleButton = document.getElementById('mobile-menu-toggle');
+      if (!toggleButton || !(toggleButton instanceof HTMLButtonElement)) {
+        console.error('Mobile menu toggle button not found');
+        return;
+      }
+      this.mobileMenuToggle = toggleButton;
+
+      const mobileNavElement = document.getElementById('mobile-nav');
+      if (!mobileNavElement) {
+        console.error('Mobile nav element not found');
+        return;
+      }
+      this.mobileNav = mobileNavElement;
+
+      this.hamburgerLines = this.mobileMenuToggle.querySelectorAll('.hamburger-line');
+      if (this.hamburgerLines.length !== 3) {
+        console.error(`Expected 3 hamburger lines, found ${this.hamburgerLines.length}`);
+        return;
+      }
+      
+      this.heroSection = document.getElementById('hero'); 
+      // Only initialize scroll handling if hero section exists
+      if (this.heroSection) {
+        window.addEventListener('scroll', this.handleScroll.bind(this), { passive: true });
+      }
+
+      window.addEventListener('resize', this.handleResize.bind(this), { passive: true });
+      
+      // Add mobile menu toggle handler
+      this.mobileMenuToggle.addEventListener('click', this.toggleMobileMenu.bind(this));
+    }
+
+    private toggleMobileMenu(): void {
+      this.isMobileMenuOpen = !this.isMobileMenuOpen;
+      
+      // Toggle mobile nav classes and attributes
+      this.mobileNav.classList.toggle('max-h-64', this.isMobileMenuOpen);
+      if (this.isMobileMenuOpen) {
+        this.mobileNav.setAttribute('data-open', 'true');
+      } else {
+        this.mobileNav.removeAttribute('data-open');
+      }
+      
+      // Toggle hamburger animation
+      const isOpen = this.isMobileMenuOpen;
+      this.hamburgerLines[0].style.transform = isOpen ? 'rotate(45deg) translate(0.375rem, 0.375rem)' : '';
+      this.hamburgerLines[1].style.opacity = isOpen ? '0' : '';
+      this.hamburgerLines[2].style.transform = isOpen ? 'rotate(-45deg) translate(0.375rem, -0.375rem)' : '';
+    }
+
+    private handleScroll(): void {
+      const currentScrollY = window.scrollY;
+      const isAtTop = currentScrollY < this.TOP_THRESHOLD;
+
+      if (!this.heroSection) {
+        console.error('Hero section not found');
+        return;
+      }
+      
+      const hasScrolledAwayFromHero =  currentScrollY > ((this.heroSection.offsetTop + this.heroSection.offsetHeight) * .2 );
+      
+      if (this.scrollTimeout) {
+        clearTimeout(this.scrollTimeout);
+      }
+
+      if (isAtTop) {
+        this.navbar?.classList.add('-translate-y-full');
+        return;
+      }
+
+      if (hasScrolledAwayFromHero) {
+        this.navbar?.classList.remove('-translate-y-full');
+        return;
+      }
+    }
+
+    private handleResize(): void {
+      const isDesktop = window.innerWidth >= 640; // 640px is the breakpoint for mobile menu (sm:)
+      
+      // If we're now on desktop and the mobile menu is open, close it
+      if (isDesktop && this.isMobileMenuOpen) {
+        this.isMobileMenuOpen = false;
+        this.mobileNav.classList.remove('max-h-64');
+        this.mobileNav.removeAttribute('data-open');
+        
+        // Reset hamburger animation
+        if (this.hamburgerLines && this.hamburgerLines.length >= 3) {
+          this.hamburgerLines[0].style.transform = '';
+          this.hamburgerLines[1].style.opacity = '';
+          this.hamburgerLines[2].style.transform = '';
+        }
+      }
+      
+      // If we're on desktop, ensure mobile menu styles are reset
+      if (isDesktop && this.mobileNav) {
+        this.mobileNav.style.maxHeight = '';
+        this.mobileNav.removeAttribute('data-open');
+      }
+    }
+
+    public destroy(): void {
+      if (this.isHomePage) {
+        window.removeEventListener('scroll', this.handleScroll.bind(this));
+      }
+      
+      window.removeEventListener('resize', this.handleResize.bind(this));
+
+      if (this.scrollTimeout) {
+        clearTimeout(this.scrollTimeout);
+      }
+
+      if (this.mobileMenuToggle) {
+        this.mobileMenuToggle.removeEventListener('click', this.toggleMobileMenu.bind(this));
+      }
+    }
+  }
+
+  /**
+   * Used to handle active nav link behavior for "links" which are sections of the home page
+   * If on home page, activate the nav link that corresponds to the section that is in view
+   */
+  class SectionVisibilityController {
+    private observer: IntersectionObserver | null = null;
+    private navLinks: { [key: string]: HTMLElement | null } = {};
+    private sections: { [key: string]: HTMLElement | null } = {};
+    private isHomePage: boolean = false;
+    private clickHandlers: { [key: string]: { element: HTMLElement, handler: (e: Event) => void } } = {};
+    private mobileMenuToggle: HTMLButtonElement | null = null;
+    private mobileNav: HTMLElement | null = null;
+    
+    // Class definitions for consistent styling
+    private readonly NAV_LINK_CLASSES = {
+      active: ['font-bold', 'text-primary-200', 'cursor-default', 'pointer-events-none'],
+      inactive: ['text-stone-400', 'hover:text-primary-300']
+    };
+
+    constructor() {
+      this.isHomePage = window.location.pathname === '/';
+      if (!this.isHomePage) return;
+
+      const toggleButton = document.getElementById('mobile-menu-toggle');
+      if (!toggleButton || !(toggleButton instanceof HTMLButtonElement)) {
+        console.error('Mobile menu toggle button not found');
+        return;
+      }
+      this.mobileMenuToggle = toggleButton;
+
+      const mobileNavElement = document.getElementById('mobile-nav');
+      if (!mobileNavElement) {
+        console.error('Mobile nav element not found');
+        return;
+      }
+      this.mobileNav = mobileNavElement;
+
+      this.init();
+    }
+
+    private init(): void {
+      // Get navigation links (now the li elements)
+      this.navLinks = {
+        hero: document.getElementById('nav-home'),
+        about: document.getElementById('nav-about'),
+        projects: document.getElementById('nav-projects')
+      };
+
+      // Get sections
+      this.sections = {
+        hero: document.getElementById('hero'),
+        about: document.getElementById('about'),
+        projects: document.getElementById('projects')
+      };
+
+      // Set up intersection observer
+      this.observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            const sectionId = entry.target.id;
+            const navLink = this.navLinks[sectionId];
+            
+            if (navLink) {
+              if (entry.isIntersecting) {
+                this.activateNavLink(navLink);
+              } else {
+                this.deactivateNavLink(navLink);
+              }
+            }
+          });
+        },
+        {
+          rootMargin: '-40% 0px -40% 0px', // Trigger when section is 50% in view
+          threshold: [0, 0.25, 0.5, 0.75, 1] // Multiple thresholds for better detection
+        }
+      );
+
+      // Observe sections
+      Object.values(this.sections).forEach(section => {
+        if (section && this.observer) {
+          this.observer.observe(section);
+        }
+      });
+
+      // Handle hash changes (when clicking nav links)
+      window.addEventListener('hashchange', this.handleHashChange.bind(this));
+      
+      // Add click handlers to prevent hash in URL
+      this.addClickHandlers();
+      
+      // Check initial hash
+      this.handleHashChange();
+    }
+
+    private addClickHandlers(): void {
+      Object.entries(this.navLinks).forEach(([sectionId, navLink]) => {
+        if (navLink) {
+          const targetSection = this.sections[sectionId];
+          if (targetSection) {
+            const clickHandler = (e: Event) => {
+              e.preventDefault();
+              targetSection.scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+              });
+              
+              // Manually activate the clicked link
+              this.activateClickedLink(navLink);
+              
+              // Close mobile menu if open
+              if (this.mobileNav && this.mobileNav.hasAttribute('data-open')) {
+                // Trigger the mobile menu toggle to close it
+                this.mobileMenuToggle?.click();
+              }
+            };
+            
+            this.clickHandlers[navLink.id] = { element: navLink, handler: clickHandler };
+            navLink.addEventListener('click', clickHandler);
+          }
+        }
+      });
+    }
+
+    private activateClickedLink(clickedLink: HTMLElement): void {
+      // Reset all nav links
+      Object.values(this.navLinks).forEach(link => {
+        if (link) {
+          this.deactivateNavLink(link);
+        }
+      });
+      
+      // Activate the clicked link
+      this.activateNavLink(clickedLink);
+    }
+
+    private activateNavLink(navLink: HTMLElement): void {
+      this.NAV_LINK_CLASSES.active.forEach((className: string) => navLink.classList.add(className));
+      this.NAV_LINK_CLASSES.inactive.forEach((className: string) => navLink.classList.remove(className));
+    }
+
+    private deactivateNavLink(navLink: HTMLElement): void {
+      this.NAV_LINK_CLASSES.inactive.forEach((className: string) => navLink.classList.add(className));
+      this.NAV_LINK_CLASSES.active.forEach((className: string) => navLink.classList.remove(className));
+    }
+
+    private handleHashChange(): void {
+      const hash = window.location.hash.slice(1); // Remove the #
+      const targetSection = this.sections[hash];
+      
+      if (targetSection) {
+        // Reset all nav links
+        Object.values(this.navLinks).forEach(link => {
+          if (link) {
+            this.deactivateNavLink(link);
+          }
+        });
+        
+        // Activate the corresponding nav link
+        const navLink = this.navLinks[hash];
+        if (navLink) {
+          this.activateNavLink(navLink);
+        }
+      }
+      // If no hash, let the intersection observer handle the active state
+    }
+
+    public destroy(): void {
+      if (this.observer) {
+        this.observer.disconnect();
+      }
+      window.removeEventListener('hashchange', this.handleHashChange.bind(this));
+      
+      // Remove click event listeners using stored elements
+      Object.values(this.clickHandlers).forEach(({ element, handler }) => {
+        element.removeEventListener('click', handler);
+      });
+    }
+  }
+
+  const navbarController = new NavbarController();
+  window.addEventListener('beforeunload', () => {
+    navbarController.destroy();
+  });
+
+  // Initialize section visibility controller only on home page
+  if (window.location.pathname === '/') {
+    const sectionVisibilityController = new SectionVisibilityController();
+
+    // Clean up on page unload
+    window.addEventListener('beforeunload', () => {
+      sectionVisibilityController.destroy();
+    });
+  }
+</script> 

@@ -1,0 +1,32 @@
+# build output
+dist/
+
+# generated types
+.astro/
+
+# dependencies
+node_modules/
+
+# logs
+pnpm-debug.log*
+
+# environment variables
+.env
+.env.production
+
+# editor
+.vscode/
+.cursor/
+
+# version control
+.git/
+.gitignore
+
+# docker
+Dockerfile
+.dockerignore
+docker-compose*.yml
+
+# misc
+**/.DS_Store
+README.md

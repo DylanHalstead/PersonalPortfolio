@@ -1,0 +1,15 @@
+---
+import Waves from '../../svelte/Waves.svelte';
+---
+
+<div class="relative h-216 lg:h-screen mb-32 md:mb-48 lg:mb-64 px-8" id="hero">
+  <div class="absolute inset-0 px-8">
+    <Waves client:only="svelte" lineColor="#27246e" />
+  </div>
+  <div class="relative z-10 top-1/2 lg:top-5/8 text-center lg:text-left lg:ml-12 xl:ml-36 2xl:ml-48">
+    <div class="space-y-4">
+      <h1 class="text-6xl lg:text-8xl xl:text-9xl 2xl:text-10xl font-black text-text-100 uppercase lg:-ml-2 tracking-tight">Dylan Halstead</h1>
+      <p class="text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl text-text-100 w-11/12 sm:w-4/5 md:w-3/4 lg:w-2/3 xl:w-1/2 2xl:w-2/5 mx-auto lg:mx-0">Engineer by trade, <span class="text-secondary-500">problem-solver</span> by nature. Crafting cool software for interesting problems.</p>
+    </div>
+  </div>
+</div>

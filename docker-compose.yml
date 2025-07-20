@@ -1,0 +1,8 @@
+services:
+  web:
+    build:
+      args:
+        - PORT=8080
+      context: .
+    ports:
+      - "8080:8080"

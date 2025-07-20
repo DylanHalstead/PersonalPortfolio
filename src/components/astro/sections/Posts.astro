@@ -1,0 +1,50 @@
+---
+import Arrow from '../../../assets/arrow.svg';
+import BlogCard from '../BlogCard.astro';
+import ScrollableList from '../../svelte/ScrollableList.svelte';
+import type { CollectionEntry } from 'astro:content';
+import { sortPosts } from '../../../utils/sortPosts';
+
+interface Props {
+  posts: CollectionEntry<'blog'>[];
+}
+
+const { posts } = Astro.props;
+const recentPosts = sortPosts(posts).slice(0, 3);
+const themedPosts = recentPosts.map((post, i) => {
+  return {
+    post: post,
+    theme: i === 0 ? 'primary' : i === 1 ? 'light' : 'secondary',
+  } as const;
+});
+---
+
+<div class="flex overflow-x-scroll py-12 flex-col gap-10 lg:gap-0 lg:flex-row text-center lg:text-left items-center">
+  <div class="max-w-full lg:max-w-1/2 lg:mr-12 flex flex-col justify-between items-center lg:items-start gap-4">
+    <div class="lg:space-y-2">
+      <h2 class="text-6xl/16 xl:text-7xl/20 2xl:text-8xl/26 font-medium tracking-tightest">
+        Check Out My Posts
+      </h2>
+      <p class="hidden lg:block text-lg/6 lg:text-xl/8 xl:text-2xl/10 text-text-50/75">
+        Check out my latest articles on software development, architecture, and everything in between written from hands-on experience.
+      </p>
+    </div>
+    <p class="text-primary-300 hover:text-primary-400 transition-colors text-xl lg:text-2xl w-fit mx-0 py-1 lg:py-0"><a href="/blog" class="inline-flex items-center gap-1">Explore All <Arrow class='size-5 lg:size-6' /></a></p>
+  </div>
+
+  <!-- Scrollable horizontal list -->
+  <div class="w-full lg:w-1/2 right-0 relative lg:absolute">
+    <ScrollableList client:only="svelte" fadeWidth="w-8">
+      {themedPosts.map((post, i) => (
+        <BlogCard 
+          color={post.theme} 
+          post={post.post} 
+          additionalWrapperClasses={i === 2 ? ['lg:pr-12'] : undefined}
+        />
+      ))}
+      <!-- <BlogCard color="primary" />
+      <BlogCard color="light" />
+      <BlogCard color="secondary" additionalWrapperClasses={['lg:pr-12']} /> -->
+    </ScrollableList>
+  </div>
+</div>

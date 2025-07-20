@@ -1,0 +1,21 @@
+---
+import InteractiveGlowingGrid from '../../svelte/InteractiveGlowingGrid.svelte';
+import RotatingText from '../../svelte/RotatingText.svelte';
+---
+
+<div class="flex flex-col items-center justify-center m-24 mt-0 mb-64 w-fit mx-auto">
+  <InteractiveGlowingGrid client:only="svelte">
+    <div class="px-6 lg:px-20 py-32 text-center space-y-10">
+      <div class="space-y-2">
+        <h2 class="text-4xl/10 md:text-5xl/12 lg:text-6xl/16 xl:text-7xl/20 2xl:text-8xl/26 font-bold">
+          <RotatingText client:only="svelte" rotatingText={["Work Together", "Build Something", "Talk Tech", "Contact Me"]}>
+            <p slot="before">Want to</p>
+            <p slot="after">?</p>
+          </RotatingText>
+        </h2>
+        <p class="text-base lg:text-lg">Reach out to me at <a class="text-primary-300 font-semibold hover:text-primary-400 transition-colors" href="mailto:hey@dylanhalstead.com">hey@dylanhalstead.com</a></p>
+      </div>
+      <a class="bg-primary-400 text-text-100 px-4 py-3 font-semibold rounded-md hover:shadow-glow hover:shadow-primary-400/50 transition-shadow cursor-pointer text-sm lg:text-lg" href="mailto:hey@dylanhalstead.com">Message Me</a>
+    </div>
+  </InteractiveGlowingGrid>
+</div>

@@ -1,0 +1,30 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import CallToAction from '../components/astro/sections/CallToAction.astro';
+import Posts from '../components/astro/sections/Posts.astro';
+import AboutMe from '../components/astro/sections/AboutMe.astro';
+import ProjectGallery from '../components/svelte/ProjectGallery.svelte';
+import ContactMe from '../components/astro/sections/ContactMe.astro';
+import Section from '../components/astro/sections/Section.astro';
+import Hero from '../components/astro/sections/Hero.astro';
+
+const projects = await getCollection('projects');
+const tags = await getCollection('tags');
+const posts = await getCollection('blog');
+---
+
+<Layout pageTitle="Dylan Halstead">
+	<Hero />
+	<Section>
+		<CallToAction />
+		<div class="flex flex-col gap-18 lg:gap-32" id="about">
+			{posts.length > 0 && <Posts posts={posts} />}
+			<AboutMe />
+		</div>
+		<div id="projects">
+			<ProjectGallery client:only="svelte" projects={projects} tags={tags} />
+		</div>
+		<ContactMe />
+	</Section>
+</Layout>

@@ -1,0 +1,17 @@
+---
+import Arrow from '../../assets/arrow.svg';
+
+interface Props {
+    href: string;
+}
+
+const { href } = Astro.props;
+---
+
+<p class="w-fit text-primary-300 group text-lg/6 lg:text-xl/8 xl:text-2xl/10">
+  <a href={href} class="inline-flex items-center gap-2 lg:gap-3 ">View More On
+    <slot />
+    <Arrow class="size-5 xl:size-7" />
+  </a>
+</p>
+  
