@@ -4,9 +4,6 @@ on:
   push:
     tags:
       - 'v*'
-    branches:
-      # TODO: Remove this after testing
-      - main
 
 jobs:
   deploy:

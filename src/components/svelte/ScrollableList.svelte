@@ -14,44 +14,44 @@
   ```
 -->
 <script lang="ts">
-  import { onMount } from 'svelte';
-  import { fade } from 'svelte/transition';
+import { onMount } from "svelte";
+import { fade } from "svelte/transition";
 
-  export let fadeWidth = 'w-12';
-  export let fadeColor = 'from-background-950';
-  export let fadeDuration = 200;
+export const fadeWidth = "w-12";
+export const fadeColor = "from-background-950";
+export const fadeDuration = 200;
 
-  let listWrapper: HTMLDivElement;
-  let showLeftFade = false;
-  let showRightFade = true;
-  let ticking = false;
+let listWrapper: HTMLDivElement;
+let showLeftFade = false;
+let showRightFade = true;
+let ticking = false;
 
-  function updateFadeState() {
-    if (!listWrapper || ticking) return;
-    
-    ticking = true;
-    requestAnimationFrame(() => {
-      const { scrollLeft, scrollWidth, clientWidth } = listWrapper;
-      showLeftFade = scrollLeft > 0;
-      showRightFade = scrollLeft < scrollWidth - clientWidth - 1;
-      ticking = false;
-    });
-  }
+function updateFadeState() {
+	if (!listWrapper || ticking) return;
 
-  onMount(() => {
-    if (listWrapper) {
-      updateFadeState();
-      // Use ResizeObserver to handle container size changes
-      const resizeObserver = new ResizeObserver(() => {
-        updateFadeState();
-      });
-      resizeObserver.observe(listWrapper);
-      
-      return () => {
-        resizeObserver.disconnect();
-      };
-    }
-  });
+	ticking = true;
+	requestAnimationFrame(() => {
+		const { scrollLeft, scrollWidth, clientWidth } = listWrapper;
+		showLeftFade = scrollLeft > 0;
+		showRightFade = scrollLeft < scrollWidth - clientWidth - 1;
+		ticking = false;
+	});
+}
+
+onMount(() => {
+	if (listWrapper) {
+		updateFadeState();
+		// Use ResizeObserver to handle container size changes
+		const resizeObserver = new ResizeObserver(() => {
+			updateFadeState();
+		});
+		resizeObserver.observe(listWrapper);
+
+		return () => {
+			resizeObserver.disconnect();
+		};
+	}
+});
 </script>
 
 <div class="relative">

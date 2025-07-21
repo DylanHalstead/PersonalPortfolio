@@ -1,21 +1,21 @@
 ---
-import Arrow from '../../../assets/arrow.svg';
-import BlogCard from '../BlogCard.astro';
-import ScrollableList from '../../svelte/ScrollableList.svelte';
-import type { CollectionEntry } from 'astro:content';
-import { sortPosts } from '../../../utils/sortPosts';
+import type { CollectionEntry } from "astro:content";
+import Arrow from "../../../assets/arrow.svg";
+import { sortPosts } from "../../../utils/sortPosts";
+import ScrollableList from "../../svelte/ScrollableList.svelte";
+import BlogCard from "../BlogCard.astro";
 
 interface Props {
-  posts: CollectionEntry<'blog'>[];
+	posts: CollectionEntry<"blog">[];
 }
 
 const { posts } = Astro.props;
 const recentPosts = sortPosts(posts).slice(0, 3);
 const themedPosts = recentPosts.map((post, i) => {
-  return {
-    post: post,
-    theme: i === 0 ? 'primary' : i === 1 ? 'light' : 'secondary',
-  } as const;
+	return {
+		post: post,
+		theme: i === 0 ? "primary" : i === 1 ? "light" : "secondary",
+	} as const;
 });
 ---
 

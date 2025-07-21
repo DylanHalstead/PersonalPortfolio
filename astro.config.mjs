@@ -7,26 +7,26 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  vite: {
-    plugins: [tailwindcss(), enhancedImages()],
-    ssr: {
-      noExternal: ["@tailwindcss/typography"],
-    },
-  },
-  integrations: [
-    svelte({
-      include: ["**/svelte/*.svelte"],
-    }),
-    sitemap(),
-  ],
-  site: "https://dylanhalstead.com/",
-  output: "static",
-  prefetch: {
-    prefetchAll: true,
-    defaultStrategy: "viewport",
-  },
-  experimental: {
-    clientPrerender: true,
-    contentIntellisense: true,
-  },
+	vite: {
+		plugins: [tailwindcss(), enhancedImages()],
+		ssr: {
+			noExternal: ["@tailwindcss/typography"],
+		},
+	},
+	integrations: [
+		svelte({
+			include: ["**/svelte/*.svelte"],
+		}),
+		sitemap(),
+	],
+	site: "https://dylanhalstead.com/",
+	output: "static",
+	prefetch: {
+		prefetchAll: true,
+		defaultStrategy: "viewport",
+	},
+	experimental: {
+		clientPrerender: true,
+		contentIntellisense: true,
+	},
 });

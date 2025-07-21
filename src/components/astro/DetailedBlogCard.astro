@@ -1,8 +1,8 @@
 ---
-import type { CollectionEntry } from 'astro:content';
+import type { CollectionEntry } from "astro:content";
 
 interface Props {
-  post: CollectionEntry<'blog'>;
+	post: CollectionEntry<"blog">;
 }
 
 const { post } = Astro.props;
@@ -11,20 +11,20 @@ const { post } = Astro.props;
  * Format date with day+ordinal suffix, short month, then year
  * @param date - The date to format
  * @returns The formatted date as a string
- * 
+ *
  * @example
  * formatDate(new Date('2022-10-10')) // "10th Oct, 2022"
  */
 function formatDate(date: Date): string {
-  const day = date.getDate();
-  const month = date.toLocaleDateString('en-US', { month: 'short' });
-  const year = date.getFullYear();
-  
-  const suffix = (day > 3 && day < 21) ? 'th' : ['st', 'nd', 'rd'][(day % 10) - 1] || 'th';
-  
-  return `${day}${suffix} ${month}, ${year}`;
-}
+	const day = date.getDate();
+	const month = date.toLocaleDateString("en-US", { month: "short" });
+	const year = date.getFullYear();
 
+	const suffix =
+		day > 3 && day < 21 ? "th" : ["st", "nd", "rd"][(day % 10) - 1] || "th";
+
+	return `${day}${suffix} ${month}, ${year}`;
+}
 ---
 
 <a href={`/blog/${post.id}`} class="hover:scale-105 transition-all duration-300">

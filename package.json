@@ -25,7 +25,15 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.1.2",
-    "git-format-staged": "^3.1.1",
-    "husky": "^9.1.7"
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.2"
+  },
+  "lint-staged": {
+    "*.{ts,json,jsonc,astro,svelte}": [
+      "biome check --write --no-errors-on-unmatched"
+    ],
+    "*": [
+      "biome check --no-errors-on-unmatched --files-ignore-unknown=true"
+    ]
   }
 }

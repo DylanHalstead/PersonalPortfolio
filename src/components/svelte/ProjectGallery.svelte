@@ -12,102 +12,113 @@
   ```
 -->
 <script lang="ts">
-  import type { CollectionEntry } from 'astro:content';
-  import { onMount } from 'svelte';
-  import ScrollableList from './ScrollableList.svelte';
+import type { CollectionEntry } from "astro:content";
+import { onMount } from "svelte";
+import ScrollableList from "./ScrollableList.svelte";
 
-  const PROJECTS_PER_PAGE = 6;
+const PROJECTS_PER_PAGE = 6;
 
-  export let projects: CollectionEntry<'projects'>[];
-  export let tags: CollectionEntry<'tags'>[];
+export let projects: CollectionEntry<"projects">[];
+export let tags: CollectionEntry<"tags">[];
 
-  let cachedSvgs: Record<string, string> = {};
-  async function loadSvgContent(svgPath: string): Promise<string> {
-    if (svgPath in cachedSvgs) {
-      return cachedSvgs[svgPath];
-    }
-    
-    try {
-      const res = await fetch(svgPath);
-      const svgContent = await res.text();
-      cachedSvgs = { ...cachedSvgs, [svgPath]: svgContent };
-      return svgContent;
-    } catch (error) {
-      console.error(`Failed to load SVG: ${svgPath}`, error);
-      return '';
-    }
-  }
+let cachedSvgs: Record<string, string> = {};
+async function loadSvgContent(svgPath: string): Promise<string> {
+	if (svgPath in cachedSvgs) {
+		return cachedSvgs[svgPath];
+	}
 
-  const unknownTag: CollectionEntry<'tags'> = {
-    id: '-1',
-    collection: 'tags' as const,
-    data: {
-      type: 'Other',
-      name: 'Unknown',
-      svgSrc: '/tags/default.svg',
-      sortOrder: -1
-    }
-  }
-  
-  onMount(async () => {
-    const uniqueSvgPaths = new Set([...tags, unknownTag].map(tag => tag.data.svgSrc));
-    await Promise.all(
-      Array.from(uniqueSvgPaths).map(path => loadSvgContent(path))
-    );
-  });
+	try {
+		const res = await fetch(svgPath);
+		const svgContent = await res.text();
+		cachedSvgs = { ...cachedSvgs, [svgPath]: svgContent };
+		return svgContent;
+	} catch (error) {
+		console.error(`Failed to load SVG: ${svgPath}`, error);
+		return "";
+	}
+}
 
-  $: resolvedProjects = projects.map(project => ({
-    ...project,
-    data: {
-      ...project.data,
-      tags: project.data.tags
-        .map(tagRef => tags.find(t => t.id === tagRef.id) || unknownTag)
-    }
-  }));
+const unknownTag: CollectionEntry<"tags"> = {
+	id: "-1",
+	collection: "tags" as const,
+	data: {
+		type: "Other",
+		name: "Unknown",
+		svgSrc: "/tags/default.svg",
+		sortOrder: -1,
+	},
+};
 
-  function sortBySortOrder<T extends { data: { sortOrder: number } }>(a: T, b: T) {
-    return a.data.sortOrder - b.data.sortOrder;
-  }
+onMount(async () => {
+	const uniqueSvgPaths = new Set(
+		[...tags, unknownTag].map((tag) => tag.data.svgSrc),
+	);
+	await Promise.all(
+		Array.from(uniqueSvgPaths).map((path) => loadSvgContent(path)),
+	);
+});
 
-  $: sortedTags = [...tags].sort(sortBySortOrder);
+$: resolvedProjects = projects.map((project) => ({
+	...project,
+	data: {
+		...project.data,
+		tags: project.data.tags.map(
+			(tagRef) => tags.find((t) => t.id === tagRef.id) || unknownTag,
+		),
+	},
+}));
 
-  let selectedTags: string[] = [];
-  $: sortedProjects = selectedTags.length === 0
-    ? resolvedProjects
-    : [...resolvedProjects].sort((a, b) => {
-        const aMatches = a.data.tags.filter(tag => selectedTags.includes(tag.id)).length;
-        const bMatches = b.data.tags.filter(tag => selectedTags.includes(tag.id)).length;
-        // Order by number of matches, then by sortOrder
-        const aScore = aMatches + (1 / (a.data.sortOrder + 1));
-        const bScore = bMatches + (1 / (b.data.sortOrder + 1));
-        return bScore - aScore;
-      });
-  
-  let currentPage = 1;
-  $: totalPages = Math.ceil(sortedProjects.length / PROJECTS_PER_PAGE);
-  $: paginatedProjects = sortedProjects.slice(
-    (currentPage - 1) * PROJECTS_PER_PAGE,
-    currentPage * PROJECTS_PER_PAGE
-  );
-  
-  function toggleTag(tagId: string) {
-    selectedTags = selectedTags.includes(tagId)
-      ? selectedTags.filter(id => id !== tagId)
-      : [...selectedTags, tagId];
-    // Reset to first page when filter changes
-    currentPage = 1; 
-  }
-  
-  let dialog: HTMLDialogElement;
-  let selectedProject: typeof resolvedProjects[0] | null = null;
-  function openModal(project: typeof resolvedProjects[0]) {
-    selectedProject = project;
-    dialog.showModal();
-  }
-  
-  function closeModal() {
-    dialog.close();
-  }
+function sortBySortOrder<T extends { data: { sortOrder: number } }>(
+	a: T,
+	b: T,
+) {
+	return a.data.sortOrder - b.data.sortOrder;
+}
+
+$: sortedTags = [...tags].sort(sortBySortOrder);
+
+let selectedTags: string[] = [];
+$: sortedProjects =
+	selectedTags.length === 0
+		? resolvedProjects
+		: [...resolvedProjects].sort((a, b) => {
+				const aMatches = a.data.tags.filter((tag) =>
+					selectedTags.includes(tag.id),
+				).length;
+				const bMatches = b.data.tags.filter((tag) =>
+					selectedTags.includes(tag.id),
+				).length;
+				// Order by number of matches, then by sortOrder
+				const aScore = aMatches + 1 / (a.data.sortOrder + 1);
+				const bScore = bMatches + 1 / (b.data.sortOrder + 1);
+				return bScore - aScore;
+			});
+
+let currentPage = 1;
+$: totalPages = Math.ceil(sortedProjects.length / PROJECTS_PER_PAGE);
+$: paginatedProjects = sortedProjects.slice(
+	(currentPage - 1) * PROJECTS_PER_PAGE,
+	currentPage * PROJECTS_PER_PAGE,
+);
+
+function toggleTag(tagId: string) {
+	selectedTags = selectedTags.includes(tagId)
+		? selectedTags.filter((id) => id !== tagId)
+		: [...selectedTags, tagId];
+	// Reset to first page when filter changes
+	currentPage = 1;
+}
+
+let dialog: HTMLDialogElement;
+let selectedProject: (typeof resolvedProjects)[0] | null = null;
+function openModal(project: (typeof resolvedProjects)[0]) {
+	selectedProject = project;
+	dialog.showModal();
+}
+
+function closeModal() {
+	dialog.close();
+}
 </script>
 
 <div>

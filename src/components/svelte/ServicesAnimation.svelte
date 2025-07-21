@@ -9,40 +9,44 @@
   ```
 -->
 <script lang="ts">
-  import { onMount } from 'svelte';
-  import gsap from 'gsap';
-  import MotionPathPlugin from 'gsap/MotionPathPlugin';
+import gsap from "gsap";
+import MotionPathPlugin from "gsap/MotionPathPlugin";
+import { onMount } from "svelte";
 
-  /**
-   * An opinionated configuration builder function for the orbiting effect of the services component
-   * @param path The id of the rectangle you want the item to orbit
-   * @param start The offset the animation will start on. Between [0,1], used as percentage
-   * @param durationThe time, in seconds, you want the animation to go across the entire path
-   * 
-   * @see https://gsap.com/docs/v3/Plugins/MotionPathPlugin/
-   */
-  function generateAnimationConfig(path: '#rect_3' | '#rect_4' | '#rect_5', start = 0, duration = 60): gsap.TweenVars {
-    return {
-      duration,
-      repeat: -1,
-      ease: 'none',
-      motionPath: {
-        path,
-        start,
-        end: 1 + start,
-        align: path,
-        alignOrigin: [0.5, 0.5],
-      }
-    }
-  }
+/**
+ * An opinionated configuration builder function for the orbiting effect of the services component
+ * @param path The id of the rectangle you want the item to orbit
+ * @param start The offset the animation will start on. Between [0,1], used as percentage
+ * @param durationThe time, in seconds, you want the animation to go across the entire path
+ *
+ * @see https://gsap.com/docs/v3/Plugins/MotionPathPlugin/
+ */
+function generateAnimationConfig(
+	path: "#rect_3" | "#rect_4" | "#rect_5",
+	start = 0,
+	duration = 60,
+): gsap.TweenVars {
+	return {
+		duration,
+		repeat: -1,
+		ease: "none",
+		motionPath: {
+			path,
+			start,
+			end: 1 + start,
+			align: path,
+			alignOrigin: [0.5, 0.5],
+		},
+	};
+}
 
-  onMount(() => {
-    gsap.registerPlugin(MotionPathPlugin)
-    gsap.to('#servers', generateAnimationConfig('#rect_3', .64, 55))
-    gsap.to('#github_actions', generateAnimationConfig('#rect_3', .08, 56))
-    gsap.to('#linking_shapes', generateAnimationConfig('#rect_5', .44, 67))
-    gsap.to('#bezier', generateAnimationConfig('#rect_5', .89, 65))
-  })
+onMount(() => {
+	gsap.registerPlugin(MotionPathPlugin);
+	gsap.to("#servers", generateAnimationConfig("#rect_3", 0.64, 55));
+	gsap.to("#github_actions", generateAnimationConfig("#rect_3", 0.08, 56));
+	gsap.to("#linking_shapes", generateAnimationConfig("#rect_5", 0.44, 67));
+	gsap.to("#bezier", generateAnimationConfig("#rect_5", 0.89, 65));
+});
 </script>
 
 <div>

@@ -1,14 +1,16 @@
 ---
 import "../styles/global.css";
-import Navbar from "../components/astro/Navbar.astro";
 import Footer from "../components/astro/Footer.astro";
+import Navbar from "../components/astro/Navbar.astro";
 
-let {pageTitle} = Astro.props
+let { pageTitle } = Astro.props;
 
-pageTitle = pageTitle ? pageTitle : 'Dylan Halstead'
+pageTitle = pageTitle ? pageTitle : "Dylan Halstead";
 
-const description = "Dylan Halstead - Software Engineer from Charlotte, NC building performant, scalable software solutions."
-const image = "https://storage.googleapis.com/halstead_portfolio_images/Personal_Portfolio.png"
+const description =
+	"Dylan Halstead - Software Engineer from Charlotte, NC building performant, scalable software solutions.";
+const image =
+	"https://storage.googleapis.com/halstead_portfolio_images/Personal_Portfolio.png";
 ---
 <!doctype html>
 <html lang="en" class="scroll-smooth">

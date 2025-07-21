@@ -1,51 +1,52 @@
 ---
-import Clock from '../../assets/clock.svg';
-import Arrow from '../../assets/arrow.svg';
-import type { CollectionEntry } from 'astro:content';
+import type { CollectionEntry } from "astro:content";
+import Arrow from "../../assets/arrow.svg";
+import Clock from "../../assets/clock.svg";
 
 interface Props {
-  color?: 'primary' | 'secondary' | 'light' | 'dark';
-  additionalWrapperClasses?: string[];
-  post: CollectionEntry<'blog'>;
+	color?: "primary" | "secondary" | "light" | "dark";
+	additionalWrapperClasses?: string[];
+	post: CollectionEntry<"blog">;
 }
 
-const { color = '', additionalWrapperClasses = [], post } = Astro.props;
+const { color = "", additionalWrapperClasses = [], post } = Astro.props;
 
 const colors: {
-  [key: string]: {
-    bgPrimary: string;
-    textPrimary: string;
-    bgSecondary: string;
-    textSecondary: string;
-  };
+	[key: string]: {
+		bgPrimary: string;
+		textPrimary: string;
+		bgSecondary: string;
+		textSecondary: string;
+	};
 } = {
-  primary: {
-    bgPrimary: 'bg-primary-500',
-    textPrimary: 'text-primary-500',
-    bgSecondary: 'bg-text-50',
-    textSecondary: 'text-text-50',
-  },
-  secondary: {
-    bgPrimary: 'bg-secondary-500',
-    textPrimary: 'text-secondary-500',
-    bgSecondary: 'bg-text-950',
-    textSecondary: 'text-text-950',
-  },
-  light: {
-    bgPrimary: 'bg-text-50',
-    textPrimary: 'text-text-50',
-    bgSecondary: 'bg-text-950',
-    textSecondary: 'text-text-950',
-  },
-  dark: {
-    bgPrimary: 'bg-text-800',
-    textPrimary: 'text-text-800',
-    bgSecondary: 'bg-text-50',
-    textSecondary: 'text-text-50',
-  },
-}
+	primary: {
+		bgPrimary: "bg-primary-500",
+		textPrimary: "text-primary-500",
+		bgSecondary: "bg-text-50",
+		textSecondary: "text-text-50",
+	},
+	secondary: {
+		bgPrimary: "bg-secondary-500",
+		textPrimary: "text-secondary-500",
+		bgSecondary: "bg-text-950",
+		textSecondary: "text-text-950",
+	},
+	light: {
+		bgPrimary: "bg-text-50",
+		textPrimary: "text-text-50",
+		bgSecondary: "bg-text-950",
+		textSecondary: "text-text-950",
+	},
+	dark: {
+		bgPrimary: "bg-text-800",
+		textPrimary: "text-text-800",
+		bgSecondary: "bg-text-50",
+		textSecondary: "text-text-50",
+	},
+};
 
-const { bgPrimary, textPrimary, textSecondary, bgSecondary } = colors[color] || colors.light;
+const { bgPrimary, textPrimary, textSecondary, bgSecondary } =
+	colors[color] || colors.light;
 
 /**
  * Get a preview of a blog post by taking the first <wordCount> words and removing all markdown syntax
@@ -54,17 +55,19 @@ const { bgPrimary, textPrimary, textSecondary, bgSecondary } = colors[color] || 
  * @returns The preview of the blog post
  */
 const getPreview = (content: string, wordCount: number = 40) => {
-  if (!content) return '';
-  
-  const unsanitizedPreview = content.split(/\s+/).slice(0, wordCount).join(' ');
-  
-  return unsanitizedPreview
-    .replace(/```[\s\S]*?```/g, '') // remove fenced code blocks
-    .replace(/`([^`]+)`/g, '$1') // replace inline code with just the content
-    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1') // replace [text](url) with just text
-    .replace(/\[([^\]]+)\](?!\()/g, '$1') // replace [text] with just text (for reference links)
-    .replace(/[#*`_~]|^[-*+]\s+|^\d+\.\s+/gm, '') // remove all markdown syntax
-    .trim() + '...';
+	if (!content) return "";
+
+	const unsanitizedPreview = content.split(/\s+/).slice(0, wordCount).join(" ");
+
+	const processedPreview = unsanitizedPreview
+		.replace(/```[\s\S]*?```/g, "") // remove fenced code blocks
+		.replace(/`([^`]+)`/g, "$1") // replace inline code with just the content
+		.replace(/\[([^\]]+)\]\([^)]+\)/g, "$1") // replace [text](url) with just text
+		.replace(/\[([^\]]+)\](?!\()/g, "$1") // replace [text] with just text (for reference links)
+		.replace(/[#*`_~]|^[-*+]\s+|^\d+\.\s+/gm, "") // remove all markdown syntax
+		.trim();
+
+	return `${processedPreview}...`;
 };
 
 /**
@@ -73,8 +76,8 @@ const getPreview = (content: string, wordCount: number = 40) => {
  * @returns The reading time in minutes, rounded to the nearest tenth
  */
 const calculateReadingTime = (content: string) => {
-  const words = content.split(/\s+/).length;
-  return (words / 200).toFixed(1);
+	const words = content.split(/\s+/).length;
+	return (words / 200).toFixed(1);
 };
 ---
 

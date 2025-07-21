@@ -1,12 +1,11 @@
 ---
 import { getCollection } from "astro:content";
-import { sortPosts } from "../../utils/sortPosts";
-import Layout from "../../layouts/Layout.astro";
-import Section from "../../components/astro/sections/Section.astro";
 import DetailedBlogCard from "../../components/astro/DetailedBlogCard.astro";
+import Section from "../../components/astro/sections/Section.astro";
+import Layout from "../../layouts/Layout.astro";
+import { sortPosts } from "../../utils/sortPosts";
 
 const blogPosts = sortPosts(await getCollection("blog"));
-
 ---
 
 <Layout pageTitle="Dylan Halstead">
