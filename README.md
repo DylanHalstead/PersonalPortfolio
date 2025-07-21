@@ -10,7 +10,7 @@ and blog content.
 - 📦 **Static site generation** powered by Astro's island architecture creating
   a fast, performant experience for users
 - 🐳 **Self-hosted site hosting** utilizing containerization w/Docker,
-  self-hosted GA runners, cloudflare runners, and NGINX
+  self-hosted GA runners, cloudflare tunnels, and NGINX
 - 🔍 **SEO-optimized** with proper metadata, canonical URLs, and social media
   tags
 - 📝 **Blog content** with Astro's content collections
