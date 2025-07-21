@@ -27,7 +27,7 @@ interface DotElement extends HTMLElement {
 	_inertiaApplied?: boolean;
 }
 
-export const enableInertia = false;
+export let enableInertia = false;
 
 let dotsContainer: HTMLElement | null = null;
 let dots: DotElement[] = [];
