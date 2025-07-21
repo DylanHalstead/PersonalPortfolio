@@ -19,17 +19,17 @@
 import { onMount } from "svelte";
 
 export let rotatingText: string[];
-export const infinite: boolean = false;
-export const textTransitionDelay: number = 3000;
+export let infinite: boolean = false;
+export let textTransitionDelay: number = 3000;
 
 let currentIndex = 0;
 let currentText = rotatingText[0];
 let isAnimating = false;
-const container: HTMLElement | null = null;
+let container: HTMLElement | null = null;
 let isVisible = false;
 let interval: ReturnType<typeof setInterval> | null = null;
-const textElement: HTMLElement | null = null;
-const hiddenMeasureElement: HTMLElement | null = null;
+let textElement: HTMLElement | null = null;
+let hiddenMeasureElement: HTMLElement | null = null;
 let rafId: number | null = null; // Store RAF ID for cleanup
 
 /**

@@ -198,19 +198,19 @@ interface Config {
 	yGap: number;
 }
 
-export const lineColor = "white";
-export const backgroundColor = "transparent";
-export const waveSpeedX = 0.0125;
-export const waveSpeedY = 0.005;
-export const waveAmpX = 32;
-export const waveAmpY = 16;
-export const xGap = 15;
-export const yGap = 30;
-export const friction = 0.925;
-export const tension = 0.005;
-export const maxCursorMove = 100;
-export const style = {};
-export const className = "";
+export let lineColor = "white";
+export let backgroundColor = "transparent";
+export let waveSpeedX = 0.0125;
+export let waveSpeedY = 0.005;
+export let waveAmpX = 32;
+export let waveAmpY = 16;
+export let xGap = 15;
+export let yGap = 30;
+export let friction = 0.925;
+export let tension = 0.005;
+export let maxCursorMove = 100;
+export let style = {};
+export let className = "";
 
 let container: HTMLDivElement;
 let canvas: HTMLCanvasElement;

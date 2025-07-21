@@ -29,11 +29,11 @@ interface DotElement extends HTMLElement {
 
 export const enableInertia = false;
 
-const dotsContainer: HTMLElement | null = null;
+let dotsContainer: HTMLElement | null = null;
 let dots: DotElement[] = [];
 let dotCenters: { el: DotElement; x: number; y: number }[] = [];
 let ctx: gsap.Context | null = null;
-const section: HTMLElement | null = null;
+let section: HTMLElement | null = null;
 let rafId: number | null = null;
 let isHovered = false;
 let resizeObserver: ResizeObserver | null = null;
