@@ -56,18 +56,13 @@ jobs:
           cache: 'pnpm'
 
       - name: Install Lighthouse CI
-        run: pnpm install -g @lhci/cli@0.12.x
-
-      - name: Wait for deployment to be ready
-        run: |
-          echo "Waiting for deployment to be fully ready..."
-          sleep 30
+        run: pnpm install -g @lhci/cli@0.15.x
 
       - name: Run Lighthouse CI
         id: lighthouse
         run: |
           # Run lighthouse tests using the external config
-          lhci autorun --config=./lighthouserc.js || true
+          lhci autorun --config=./lighthouserc.json || true
           
           # Extract scores from the latest run
           if [ -f ".lighthouseci/manifest.json" ]; then
