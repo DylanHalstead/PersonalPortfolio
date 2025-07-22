@@ -230,6 +230,7 @@ function closeModal() {
   {/if}
 </div>
 
+<!-- TODO: add transition when opening/closing (scale?)-->
 <dialog
   bind:this={dialog}
   class="bg-background-800 text-text-100 rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto p-0 backdrop:bg-black/50 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 mx-4 sm:mx-8 md:mx-0"

@@ -4,9 +4,10 @@ on:
   push:
     tags:
       - 'v*'
+    branches:
+      - main
 
 jobs:
-  # TODO: on failure, make sure old version of the container is "resumed"
   deploy:
     runs-on: self-hosted
     steps:
@@ -16,18 +17,134 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
+      - name: Save current container state
+        id: save-state
+        run: |
+          # Check if there's a running container and save its image
+          if docker ps --format "table {{.Names}}" | grep -q "personal-portfolio-web"; then
+            echo "Saving current container state..."
+            docker commit personal-portfolio-web personal-portfolio-backup:$(date +%Y%m%d-%H%M%S)
+            echo "backup-created=true" >> $GITHUB_OUTPUT
+            echo "backup-image=personal-portfolio-backup:$(date +%Y%m%d-%H%M%S)" >> $GITHUB_OUTPUT
+          else
+            echo "No running container found to backup"
+            echo "backup-created=false" >> $GITHUB_OUTPUT
+          fi
+
       - name: Stop existing containers
         run: |
           docker compose -f docker-compose.yml down || true
           echo "Stopped any existing containers"
 
       - name: Build and deploy new container
+        id: deploy
         run: |
           docker compose -f docker-compose.yml up --build -d
           echo "New container built and deployed successfully"
+          # Wait a moment for container to fully start
+          sleep 10
+          # Verify the container is running and healthy
+          if docker ps --format "table {{.Names}}" | grep -q "personal-portfolio-web"; then
+            echo "deployment-successful=true" >> $GITHUB_OUTPUT
+          else
+            echo "deployment-successful=false" >> $GITHUB_OUTPUT
+            exit 1
+          fi
 
       - name: Verify deployment
         run: |
           docker ps
           docker compose ps
           echo "Container is running and accessible on port 8080"
+
+      - name: Rollback on failure
+        if: steps.deploy.outcome == 'failure' && steps.save-state.outputs.backup-created == 'true'
+        run: |
+          echo "Deployment failed! Rolling back to previous version..."
+          # Stop the failed deployment
+          docker compose -f docker-compose.yml down || true
+          # Start the backup container
+          docker run -d \
+            --name personal-portfolio-web \
+            -p 8080:8080 \
+            $(docker images --format "{{.Repository}}:{{.Tag}}" | grep "personal-portfolio-backup" | head -1)
+          echo "Rollback completed - old version is now running"
+          # Clean up the failed build
+          docker system prune -f
+
+      - name: Verify rollback
+        if: steps.deploy.outcome == 'failure' && steps.save-state.outputs.backup-created == 'true'
+        run: |
+          docker ps
+          echo "Rollback verification - container should be running on port 8080"
+
+  lighthouse:
+    needs: deploy
+    runs-on: self-hosted
+    if: needs.deploy.result == 'success'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install Lighthouse CI
+        run: npm install -g @lhci/cli@0.12.x
+
+      - name: Wait for deployment to be ready
+        run: |
+          echo "Waiting for deployment to be fully ready..."
+          sleep 30
+
+      - name: Run Lighthouse CI
+        id: lighthouse
+        run: |
+          # Run lighthouse tests using the external config
+          lhci autorun --config=./lighthouserc.js || true
+          
+          # Extract scores from the latest run
+          if [ -f ".lighthouseci/manifest.json" ]; then
+            LATEST_RUN=$(jq -r '.lhr' .lighthouseci/manifest.json | head -1)
+            if [ -f "$LATEST_RUN" ]; then
+              PERFORMANCE=$(jq -r '.categories.performance.score' "$LATEST_RUN" | awk '{printf "%.0f", $1 * 100}')
+              ACCESSIBILITY=$(jq -r '.categories.accessibility.score' "$LATEST_RUN" | awk '{printf "%.0f", $1 * 100}')
+              BEST_PRACTICES=$(jq -r '.categories."best-practices".score' "$LATEST_RUN" | awk '{printf "%.0f", $1 * 100}')
+              SEO=$(jq -r '.categories.seo.score' "$LATEST_RUN" | awk '{printf "%.0f", $1 * 100}')
+              
+              echo "performance=$PERFORMANCE" >> $GITHUB_OUTPUT
+              echo "accessibility=$ACCESSIBILITY" >> $GITHUB_OUTPUT
+              echo "best-practices=$BEST_PRACTICES" >> $GITHUB_OUTPUT
+              echo "seo=$SEO" >> $GITHUB_OUTPUT
+              echo "lighthouse-run=true" >> $GITHUB_OUTPUT
+            else
+              echo "lighthouse-run=false" >> $GITHUB_OUTPUT
+            fi
+          else
+            echo "lighthouse-run=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Update README with Lighthouse scores
+        if: steps.lighthouse.outputs.lighthouse-run == 'true'
+        run: |
+          # Read the template and replace placeholders
+          sed -e "s/{{DATE}}/$(date +"%Y-%m-%d")/g" \
+              -e "s/{{PERFORMANCE}}/${{ steps.lighthouse.outputs.performance }}/g" \
+              -e "s/{{ACCESSIBILITY}}/${{ steps.lighthouse.outputs.accessibility }}/g" \
+              -e "s/{{BEST_PRACTICES}}/${{ steps.lighthouse.outputs.best-practices }}/g" \
+              -e "s/{{SEO}}/${{ steps.lighthouse.outputs.seo }}/g" \
+              README.template.md > README.md
+
+      - name: Commit and push README updates
+        if: steps.lighthouse.outputs.lighthouse-run == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add README.md
+          git commit -m "📊 Update Lighthouse performance metrics [skip ci]" || echo "No changes to commit"
+          git push

@@ -1,9 +1,19 @@
-<!-- TODO: update and make... better -->
-
 # Personal Portfolio
 
 My personal website used to be a portfolio showcase; used to show previous work
 and blog content.
+
+## 🏆 Performance Metrics
+
+Latest Lighthouse scores (updated on {{DATE}}) - tested across {{PAGES_TESTED}}
+pages:
+
+| Metric         | Score               |
+| -------------- | ------------------- |
+| Performance    | {{PERFORMANCE}}%    |
+| Accessibility  | {{ACCESSIBILITY}}%  |
+| Best Practices | {{BEST_PRACTICES}}% |
+| SEO            | {{SEO}}%            |
 
 ## ✨ Features
 
