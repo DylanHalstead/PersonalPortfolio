@@ -9,35 +9,35 @@ on:
 
 jobs:
   # TODO: on failure, make sure old version of the container is "resumed"
-  deploy:
-    runs-on: self-hosted
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+  # deploy:
+  #   runs-on: self-hosted
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v4
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+  #     - name: Set up Docker Buildx
+  #       uses: docker/setup-buildx-action@v3
 
-      - name: Stop existing containers
-        run: |
-          docker compose -f docker-compose.yml down || true
-          echo "Stopped any existing containers"
+  #     - name: Stop existing containers
+  #       run: |
+  #         docker compose -f docker-compose.yml down || true
+  #         echo "Stopped any existing containers"
 
-      - name: Build and deploy new container
-        run: |
-          docker compose -f docker-compose.yml up --build -d
-          echo "New container built and deployed successfully"
+  #     - name: Build and deploy new container
+  #       run: |
+  #         docker compose -f docker-compose.yml up --build -d
+  #         echo "New container built and deployed successfully"
 
-      - name: Verify deployment
-        run: |
-          docker ps
-          docker compose ps
-          echo "Container is running and accessible on port 8080"
+  #     - name: Verify deployment
+  #       run: |
+  #         docker ps
+  #         docker compose ps
+  #         echo "Container is running and accessible on port 8080"
 
   lighthouse:
-    needs: deploy
+    # needs: deploy
     runs-on: self-hosted
-    if: needs.deploy.result == 'success'
+    # if: needs.deploy.result == 'success'
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -48,10 +48,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-          cache: 'npm'
+          cache: 'pnpm'
 
       - name: Install Lighthouse CI
-        run: npm install -g @lhci/cli@0.12.x
+        run: pnpm install -g @lhci/cli@0.12.x
 
       - name: Wait for deployment to be ready
         run: |
