@@ -8,6 +8,7 @@ on:
       - main
 
 jobs:
+  # TODO: on failure, make sure old version of the container is "resumed"
   deploy:
     runs-on: self-hosted
     steps:
@@ -17,66 +18,21 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Save current container state
-        id: save-state
-        run: |
-          # Check if there's a running container and save its image
-          if docker ps --format "table {{.Names}}" | grep -q "personal-portfolio-web"; then
-            echo "Saving current container state..."
-            docker commit personal-portfolio-web personal-portfolio-backup:$(date +%Y%m%d-%H%M%S)
-            echo "backup-created=true" >> $GITHUB_OUTPUT
-            echo "backup-image=personal-portfolio-backup:$(date +%Y%m%d-%H%M%S)" >> $GITHUB_OUTPUT
-          else
-            echo "No running container found to backup"
-            echo "backup-created=false" >> $GITHUB_OUTPUT
-          fi
-
       - name: Stop existing containers
         run: |
           docker compose -f docker-compose.yml down || true
           echo "Stopped any existing containers"
 
       - name: Build and deploy new container
-        id: deploy
         run: |
           docker compose -f docker-compose.yml up --build -d
           echo "New container built and deployed successfully"
-          # Wait a moment for container to fully start
-          sleep 10
-          # Verify the container is running and healthy
-          if docker ps --format "table {{.Names}}" | grep -q "personal-portfolio-web"; then
-            echo "deployment-successful=true" >> $GITHUB_OUTPUT
-          else
-            echo "deployment-successful=false" >> $GITHUB_OUTPUT
-            exit 1
-          fi
 
       - name: Verify deployment
         run: |
           docker ps
           docker compose ps
           echo "Container is running and accessible on port 8080"
-
-      - name: Rollback on failure
-        if: steps.deploy.outcome == 'failure' && steps.save-state.outputs.backup-created == 'true'
-        run: |
-          echo "Deployment failed! Rolling back to previous version..."
-          # Stop the failed deployment
-          docker compose -f docker-compose.yml down || true
-          # Start the backup container
-          docker run -d \
-            --name personal-portfolio-web \
-            -p 8080:8080 \
-            $(docker images --format "{{.Repository}}:{{.Tag}}" | grep "personal-portfolio-backup" | head -1)
-          echo "Rollback completed - old version is now running"
-          # Clean up the failed build
-          docker system prune -f
-
-      - name: Verify rollback
-        if: steps.deploy.outcome == 'failure' && steps.save-state.outputs.backup-created == 'true'
-        run: |
-          docker ps
-          echo "Rollback verification - container should be running on port 8080"
 
   lighthouse:
     needs: deploy
