@@ -39,68 +39,15 @@ jobs:
     runs-on: self-hosted
     # if: needs.deploy.result == 'success'
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-          cache: 'pnpm'
-
-      - name: Install Lighthouse CI
-        run: pnpm install -g @lhci/cli@0.15.x
-
-      - name: Run Lighthouse CI
+      - uses: actions/checkout@v4
+      - name: Audit URLs using Lighthouse
+        uses: treosh/lighthouse-ci-action@v12
         id: lighthouse
+        with:
+          urls: |
+            https://dylanhalstead.com/
+            https://dylanhalstead.com/blog
+          configPath: './lighthouserc.json'
+      - name: Read output
         run: |
-          # Run lighthouse tests using the external config
-          lhci autorun --config=./lighthouserc.json || true
-          
-          # Extract scores from the latest run
-          if [ -f ".lighthouseci/manifest.json" ]; then
-            LATEST_RUN=$(jq -r '.lhr' .lighthouseci/manifest.json | head -1)
-            if [ -f "$LATEST_RUN" ]; then
-              PERFORMANCE=$(jq -r '.categories.performance.score' "$LATEST_RUN" | awk '{printf "%.0f", $1 * 100}')
-              ACCESSIBILITY=$(jq -r '.categories.accessibility.score' "$LATEST_RUN" | awk '{printf "%.0f", $1 * 100}')
-              BEST_PRACTICES=$(jq -r '.categories."best-practices".score' "$LATEST_RUN" | awk '{printf "%.0f", $1 * 100}')
-              SEO=$(jq -r '.categories.seo.score' "$LATEST_RUN" | awk '{printf "%.0f", $1 * 100}')
-              
-              echo "performance=$PERFORMANCE" >> $GITHUB_OUTPUT
-              echo "accessibility=$ACCESSIBILITY" >> $GITHUB_OUTPUT
-              echo "best-practices=$BEST_PRACTICES" >> $GITHUB_OUTPUT
-              echo "seo=$SEO" >> $GITHUB_OUTPUT
-              echo "lighthouse-run=true" >> $GITHUB_OUTPUT
-            else
-              echo "lighthouse-run=false" >> $GITHUB_OUTPUT
-            fi
-          else
-            echo "lighthouse-run=false" >> $GITHUB_OUTPUT
-          fi
-
-      - name: Update README with Lighthouse scores
-        if: steps.lighthouse.outputs.lighthouse-run == 'true'
-        run: |
-          # Read the template and replace placeholders
-          sed -e "s/{{DATE}}/$(date +"%Y-%m-%d")/g" \
-              -e "s/{{PERFORMANCE}}/${{ steps.lighthouse.outputs.performance }}/g" \
-              -e "s/{{ACCESSIBILITY}}/${{ steps.lighthouse.outputs.accessibility }}/g" \
-              -e "s/{{BEST_PRACTICES}}/${{ steps.lighthouse.outputs.best-practices }}/g" \
-              -e "s/{{SEO}}/${{ steps.lighthouse.outputs.seo }}/g" \
-              README.template.md > README.md
-
-      - name: Commit and push README updates
-        if: steps.lighthouse.outputs.lighthouse-run == 'true'
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add README.md
-          git commit -m "📊 Update Lighthouse performance metrics [skip ci]" || echo "No changes to commit"
-          git push
+          cat ${{ steps.lighthouse.outputs.manifest }}
