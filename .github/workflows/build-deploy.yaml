@@ -36,7 +36,7 @@ jobs:
 
   lighthouse:
     # needs: deploy
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     # if: needs.deploy.result == 'success'
     steps:
       - uses: actions/checkout@v4
@@ -44,9 +44,6 @@ jobs:
         uses: treosh/lighthouse-ci-action@v12
         id: lighthouse
         with:
-          urls: |
-            https://dylanhalstead.com/
-            https://dylanhalstead.com/blog
           configPath: './lighthouserc.json'
       - name: Read output
         run: |
