@@ -5,7 +5,7 @@ on:
     tags:
       - 'v*'
     branches:
-      - main
+      - lighthouse
 
 jobs:
   # TODO: on failure, make sure old version of the container is "resumed"
