@@ -6,6 +6,7 @@ import Navbar from "../components/astro/Navbar.astro";
 let { pageTitle } = Astro.props;
 
 pageTitle = pageTitle ? pageTitle : "Dylan Halstead";
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 
 const description =
 	"Dylan Halstead - Software Engineer from Charlotte, NC building performant, scalable software solutions.";
@@ -17,7 +18,7 @@ const image =
 	<head>
 		<title>{pageTitle}</title>
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="canonical" href="https://dylanhalstead.com/" />
+		<link rel="canonical" href={canonicalUrl} />
 		<link rel="sitemap" href="/sitemap-index.xml" />
 
 		<meta charset="UTF-8" />

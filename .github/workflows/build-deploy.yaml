@@ -34,79 +34,64 @@ jobs:
   #         docker compose ps
   #         echo "Container is running and accessible on port 8080"
 
-  lighthouse:
-    # needs: deploy
+  # lighthouse:
+  #   # needs: deploy
+  #   runs-on: ubuntu-latest
+  #   # if: needs.deploy.result == 'success'
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - name: Audit URLs using Lighthouse
+  #       uses: treosh/lighthouse-ci-action@v12
+  #       id: lighthouse
+  #       with:
+  #         configPath: './lighthouserc.json'
+  #     - name: Calculate category averages per URL
+  #       run: |
+  #         # Get the manifest output and parse it
+  #         MANIFEST='${{ steps.lighthouse.outputs.manifest }}'
+          
+  #         echo "$MANIFEST" | jq -r '.[] | "\(.url)|\(.summary.performance)|\(.summary.accessibility)|\(.summary."best-practices")|\(.summary.seo)"' | \
+  #         awk -F'|' '{
+  #           url = $1
+  #           performance = $2
+  #           accessibility = $3
+  #           best_practices = $4
+  #           seo = $5
+            
+  #           # Initialize arrays for this URL if not seen before
+  #           if (!(url in urls)) {
+  #             urls[url] = 1
+  #             perf_sum[url] = 0
+  #             acc_sum[url] = 0
+  #             bp_sum[url] = 0
+  #             seo_sum[url] = 0
+  #             count[url] = 0
+  #           }
+            
+  #           perf_sum[url] += performance
+  #           acc_sum[url] += accessibility
+  #           bp_sum[url] += best_practices
+  #           seo_sum[url] += seo
+  #           count[url]++
+  #         }
+  #         END {
+  #           for (url in urls) {
+  #             printf "URL: %s\n", url
+  #             printf "  Performance: %.2f\n", perf_sum[url] / count[url]
+  #             printf "  Accessibility: %.2f\n", acc_sum[url] / count[url]
+  #             printf "  Best Practices: %.2f\n", bp_sum[url] / count[url]
+  #             printf "  SEO: %.2f\n", seo_sum[url] / count[url]
+  #             printf "\n"
+  #           }
+  #         }'
+
+  lighthouseci:
     runs-on: ubuntu-latest
-    # if: needs.deploy.result == 'success'
     steps:
       - uses: actions/checkout@v4
-      - name: Audit URLs using Lighthouse
-        uses: treosh/lighthouse-ci-action@v12
-        id: lighthouse
-        with:
-          configPath: './lighthouserc.json'
-      - name: Read output
-        run: |
-          echo "${{ steps.lighthouse.outputs.manifest }}"
-      - name: Calculate category averages per URL
-        run: |
-          # Get the manifest output and parse it
-          MANIFEST='${{ steps.lighthouse.outputs.manifest }}'
-          
-          # Use jq to parse the JSON and calculate averages per URL
-          echo "$MANIFEST" | jq -r '
-            # Group by URL and calculate averages for each URL
-            group_by(.url) | 
-            map({
-              url: .[0].url,
-              performance: map(.summary.performance // 0) | add / length,
-              accessibility: map(.summary.accessibility // 0) | add / length,
-              "best-practices": map(.summary."best-practices" // 0) | add / length,
-              seo: map(.summary.seo // 0) | add / length
-            }) | 
-            .[] | 
-            "URL: \(.url)"
-            "  Performance: \(.performance | round * 100 / 100)"
-            "  Accessibility: \(.accessibility | round * 100 / 100)"
-            "  Best Practices: \(."best-practices" | round * 100 / 100)"
-            "  SEO: \(.seo | round * 100 / 100)"
-            ""
-          ' || echo "Failed to parse Lighthouse results"
-          
-          # Alternative approach using grep and awk if jq is not available
-          echo "=== Alternative parsing per URL ==="
-          echo "$MANIFEST" | jq -r '.[] | "\(.url)|\(.summary.performance)|\(.summary.accessibility)|\(.summary."best-practices")|\(.summary.seo)"' | \
-          awk -F'|' '{
-            url = $1
-            performance = $2
-            accessibility = $3
-            best_practices = $4
-            seo = $5
-            
-            # Initialize arrays for this URL if not seen before
-            if (!(url in urls)) {
-              urls[url] = 1
-              perf_sum[url] = 0
-              acc_sum[url] = 0
-              bp_sum[url] = 0
-              seo_sum[url] = 0
-              count[url] = 0
-            }
-            
-            perf_sum[url] += performance
-            acc_sum[url] += accessibility
-            bp_sum[url] += best_practices
-            seo_sum[url] += seo
-            count[url]++
-          }
-          END {
-            for (url in urls) {
-              printf "URL: %s\n", url
-              printf "  Performance: %.2f\n", perf_sum[url] / count[url]
-              printf "  Accessibility: %.2f\n", acc_sum[url] / count[url]
-              printf "  Best Practices: %.2f\n", bp_sum[url] / count[url]
-              printf "  SEO: %.2f\n", seo_sum[url] / count[url]
-              printf "\n"
-            }
-          }'
+      - uses: actions/setup-node@v4
+      - run: pnpm i -g @lhci/cli@0.15.x
+      - run: lhci autorun
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
       
