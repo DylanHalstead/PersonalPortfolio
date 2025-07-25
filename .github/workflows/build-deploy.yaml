@@ -9,30 +9,30 @@ on:
 
 jobs:
   # TODO: on failure, make sure old version of the container is "resumed"
-  # deploy:
-  #   runs-on: self-hosted
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v4
+  deploy:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-  #     - name: Set up Docker Buildx
-  #       uses: docker/setup-buildx-action@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
 
-  #     - name: Stop existing containers
-  #       run: |
-  #         docker compose -f docker-compose.yml down || true
-  #         echo "Stopped any existing containers"
+      - name: Stop existing containers
+        run: |
+          docker compose -f docker-compose.yml down || true
+          echo "Stopped any existing containers"
 
-  #     - name: Build and deploy new container
-  #       run: |
-  #         docker compose -f docker-compose.yml up --build -d
-  #         echo "New container built and deployed successfully"
+      - name: Build and deploy new container
+        run: |
+          docker compose -f docker-compose.yml up --build -d
+          echo "New container built and deployed successfully"
 
-  #     - name: Verify deployment
-  #       run: |
-  #         docker ps
-  #         docker compose ps
-  #         echo "Container is running and accessible on port 8080"
+      - name: Verify deployment
+        run: |
+          docker ps
+          docker compose ps
+          echo "Container is running and accessible on port 8080"
 
   # lighthouse:
   #   # needs: deploy
@@ -86,6 +86,7 @@ jobs:
   #         }'
 
   lighthouseci:
+    needs: deploy
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
