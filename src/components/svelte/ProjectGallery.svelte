@@ -158,7 +158,7 @@ function openModal(project: (typeof resolvedProjects)[0]) {
       >
         <div class="bg-background-900 border-2 border-text-50/25 rounded-xl transition-transform duration-200 hover:scale-105 cursor-pointer">
           <img 
-            src={project.data.imageSrc || "/projects/fallback.png"} 
+            src={project.data.imageSrc || "/projects/fallback.webp"} 
             alt={project.data.title}
             class="w-full aspect-video object-cover rounded-t-xl"
             loading="lazy"
@@ -246,7 +246,7 @@ function openModal(project: (typeof resolvedProjects)[0]) {
 >
   <div class="relative">
     <img 
-      src={selectedProject?.data.imageSrc || "/projects/fallback.png"} 
+      src={selectedProject?.data.imageSrc || "/projects/fallback.webp"} 
       alt={selectedProject?.data.title}
       class="w-full h-64 object-cover brightness-20"
       loading="lazy"
