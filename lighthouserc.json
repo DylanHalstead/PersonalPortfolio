@@ -5,8 +5,7 @@
         "https://dylanhalstead.com/",
         "https://dylanhalstead.com/blog"
       ],
-      "numberOfRuns": 1,
-      "psiStrategy": "desktop"
+      "numberOfRuns": 3
     },
     "assert": {
       "assertions": {

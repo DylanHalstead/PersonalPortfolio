@@ -4,7 +4,10 @@ import Waves from "../../svelte/Waves.svelte";
 
 <div class="relative h-216 lg:h-screen mb-32 md:mb-48 lg:mb-64 px-8" id="hero">
   <div class="absolute inset-0 px-8">
-    <Waves client:only="svelte" lineColor="#27246e" />
+    <Waves client:only="svelte" lineColor="#27246e">
+      <!-- Set empty fallback for LCP optimization -->
+      <div slot="fallback"></div>
+    </WavesWaves>
   </div>
   <div class="relative z-10 top-1/2 lg:top-5/8 text-center lg:text-left lg:ml-12 xl:ml-36 2xl:ml-48">
     <div class="space-y-4">

@@ -25,6 +25,11 @@ const image =
 		<meta name="description" content={description} />
 		<meta name="generator" content={Astro.generator} />
 
+		<!-- Performance optimizations -->
+		<link rel="dns-prefetch" href="https://storage.googleapis.com/">
+		<link rel="preconnect" href="https://storage.googleapis.com/" crossorigin>
+		<meta http-equiv="Accept-CH" content="DPR, Viewport-Width, Width">
+
 		<!-- Open Graph / Facebook -->
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content="https://dylanhalstead.com/" />
@@ -47,23 +52,6 @@ const image =
 		<meta name="robots" content="index, follow" />
 		<meta name="theme-color" content="#0f0f23" />
 		<meta name="msapplication-TileColor" content="#0f0f23" />
-		
-		<!--Font Preloads -->
-		<link rel="preload" href="/fonts/karla/karla-v31-latin-200.woff2" as="font" type="font/woff2" crossorigin>
-		<link rel="preload" href="/fonts/karla/karla-v31-latin-200italic.woff2" as="font" type="font/woff2" crossorigin>
-		<link rel="preload" href="/fonts/karla/karla-v31-latin-300.woff2" as="font" type="font/woff2" crossorigin>
-		<link rel="preload" href="/fonts/karla/karla-v31-latin-300italic.woff2" as="font" type="font/woff2" crossorigin>
-		<link rel="preload" href="/fonts/karla/karla-v31-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
-		<link rel="preload" href="/fonts/karla/karla-v31-latin-italic.woff2" as="font" type="font/woff2" crossorigin>
-		<link rel="preload" href="/fonts/karla/karla-v31-latin-500.woff2" as="font" type="font/woff2" crossorigin>
-		<link rel="preload" href="/fonts/karla/karla-v31-latin-500italic.woff2" as="font" type="font/woff2" crossorigin>
-		<link rel="preload" href="/fonts/karla/karla-v31-latin-600.woff2" as="font" type="font/woff2" crossorigin>
-		<link rel="preload" href="/fonts/karla/karla-v31-latin-600italic.woff2" as="font" type="font/woff2" crossorigin>
-		<link rel="preload" href="/fonts/karla/karla-v31-latin-700.woff2" as="font" type="font/woff2" crossorigin>
-		<link rel="preload" href="/fonts/karla/karla-v31-latin-700italic.woff2" as="font" type="font/woff2" crossorigin>
-		<link rel="preload" href="/fonts/karla/karla-v31-latin-800.woff2" as="font" type="font/woff2" crossorigin>
-		<link rel="preload" href="/fonts/karla/karla-v31-latin-800italic.woff2" as="font" type="font/woff2" crossorigin>
-		<link rel="preload" href="/fonts/lot/lot.woff2" as="font" type="font/woff2" crossorigin>
 	</head>
 	<body class="text-text-100 bg-background-950 font-karla min-h-screen flex flex-col justify-between">
 		<Navbar />

@@ -114,10 +114,10 @@ let selectedProject: (typeof resolvedProjects)[0] | null = null;
 function openModal(project: (typeof resolvedProjects)[0]) {
 	selectedProject = project;
 	dialog.showModal();
-}
-
-function closeModal() {
-	dialog.close();
+	setTimeout(() => {
+		dialog.classList.remove("scale-0");
+		dialog.classList.add("scale-100");
+	}, 10);
 }
 </script>
 
@@ -157,7 +157,7 @@ function closeModal() {
         on:click={() => openModal(project)}
       >
         <div class="bg-background-900 border-2 border-text-50/25 rounded-xl transition-transform duration-200 hover:scale-105 cursor-pointer">
-          <enhanced:img 
+          <img 
             src={project.data.imageSrc || "/projects/fallback.png"} 
             alt={project.data.title}
             class="w-full aspect-video object-cover rounded-t-xl"
@@ -230,14 +230,18 @@ function closeModal() {
   {/if}
 </div>
 
-<!-- TODO: add transition when opening/closing (scale?)-->
 <dialog
   bind:this={dialog}
-  class="bg-background-800 text-text-100 rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto p-0 backdrop:bg-black/50 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 mx-4 sm:mx-8 md:mx-0"
+  class="bg-background-800 text-text-100 rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto p-0 backdrop:bg-black/50 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 mx-4 sm:mx-8 md:mx-0 scale-0 transition-transform duration-200 ease-out"
   on:click|stopPropagation={(e) => {
     if (e.target === dialog) {
-      closeModal();
+      dialog.close();
     }
+  }}
+  on:close={() => {
+    // Reset scale when dialog closes
+    dialog.classList.remove('scale-100');
+    dialog.classList.add('scale-0');
   }}
 >
   <div class="relative">
@@ -245,11 +249,12 @@ function closeModal() {
       src={selectedProject?.data.imageSrc || "/projects/fallback.png"} 
       alt={selectedProject?.data.title}
       class="w-full h-64 object-cover brightness-20"
+      loading="lazy"
     />
     
     <button 
       class="absolute top-4 right-4 cursor-pointer text-text-100/80 hover:text-text-100 transition-colors"
-      on:click={closeModal}
+      on:click={() => dialog.close()}
       aria-label="Close Modal"
     >
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="size-6 stroke-[1.5]">
