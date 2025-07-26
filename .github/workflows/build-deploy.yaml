@@ -29,7 +29,6 @@ jobs:
 
       - name: Verify deployment
         run: |
-          docker ps
           docker compose ps
           echo "Container is running and accessible on port 8080"
 
