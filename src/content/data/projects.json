@@ -68,7 +68,6 @@
 		"tags": ["25", "13", "3", "34", "35", "31"],
 		"sortOrder": 50,
 		"imageSrc": "https://storage.googleapis.com/halstead_portfolio_images/Coding_Corner.png",
-		"deploymentUrl": "https://coding-corner.onrender.com/",
 		"sourceUrl": "https://github.com/DylanHalstead/Coding_Corner"
 	},
 	{
@@ -116,7 +115,8 @@
 		],
 		"sortOrder": 60,
 		"imageSrc": "https://storage.googleapis.com/halstead_portfolio_images/Personal_Portfolio.png",
-		"sourceUrl": "https://github.com/DylanHalstead/personal-portfolio"
+		"sourceUrl": "https://github.com/DylanHalstead/personal-portfolio",
+		"deploymentUrl": "http://old.dylanhalstead.com/"
 	},
 	{
 		"id": "7",
