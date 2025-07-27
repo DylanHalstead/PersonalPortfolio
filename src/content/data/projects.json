@@ -51,6 +51,51 @@
 		"sourceUrl": "https://github.com/BridgesUNCC/cs-materials-react-webclient"
 	},
 	{
+		"id": "6",
+		"title": "AutoBlackjack",
+		"description": "AutoBlackjack is a computer vision application designed to assist users in making informed decisions in the game of Blackjack. Using machine learning techniques and computer vision, AutoBlackjack helps identify the best possible move to make with any hand of Blackjack. This project was built for Marco Scipioni's Computer Vision with Python (DTSC 3000) course at UNC Charlotte.",
+		"date": "2023-12-02",
+		"tags": ["15", "4", "16"],
+		"sortOrder": 40,
+		"imageSrc": "https://storage.googleapis.com/halstead_portfolio_images/AutoBlackjack.png",
+		"sourceUrl": "https://github.com/DylanHalstead/AutoBlackjack"
+	},
+	{
+		"id": "5",
+		"title": "Coding Corner",
+		"description": "Originally a discord server for UNC Charlotte Computer Science students, Coding Corner is the place for CS students to plan meetups, find and attend get-togethers, and make new friends! An event CRUD resource built for Network-Based Application Development, Coding Corning was my final project for ITCS 4166 at UNCC with additional features added by myself.",
+		"date": "2023-05-02",
+		"tags": ["25", "13", "3", "34", "35", "31"],
+		"sortOrder": 50,
+		"imageSrc": "https://storage.googleapis.com/halstead_portfolio_images/Coding_Corner.png",
+		"deploymentUrl": "https://coding-corner.onrender.com/",
+		"sourceUrl": "https://github.com/DylanHalstead/Coding_Corner"
+	},
+	{
+		"id": "13",
+		"title": "Personal Website",
+		"description": "The site you are currently on! Built with Astro, Svelte, and Tailwind, this is a static site I use to showcase my projects and skills (as well as any articles I write).",
+		"date": "2025-07-02",
+		"tags": [
+			"2",
+			"8",
+			"9",
+			"22",
+			"28",
+			"31",
+			"32",
+			"34",
+			"35",
+			"42",
+			"43",
+			"18"
+		],
+		"sortOrder": 70,
+		"imageSrc": "https://storage.googleapis.com/halstead_portfolio_images/Personal_Website.webp",
+		"sourceUrl": "https://github.com/DylanHalstead/PersonalPortfolio",
+		"deploymentUrl": "https://dylanhalstead.com/"
+	},
+	{
 		"id": "4",
 		"title": "Old Personal Portfolio",
 		"date": "2023-12-02",
@@ -69,30 +114,9 @@
 			"32",
 			"31"
 		],
-		"sortOrder": 40,
+		"sortOrder": 60,
 		"imageSrc": "https://storage.googleapis.com/halstead_portfolio_images/Personal_Portfolio.png",
 		"sourceUrl": "https://github.com/DylanHalstead/personal-portfolio"
-	},
-	{
-		"id": "5",
-		"title": "Coding Corner",
-		"description": "Originally a discord server for UNC Charlotte Computer Science students, Coding Corner is the place for CS students to plan meetups, find and attend get-togethers, and make new friends! An event CRUD resource built for Network-Based Application Development, Coding Corning was my final project for ITCS 4166 at UNCC with additional features added by myself.",
-		"date": "2023-05-02",
-		"tags": ["25", "13", "3", "34", "35", "31"],
-		"sortOrder": 50,
-		"imageSrc": "https://storage.googleapis.com/halstead_portfolio_images/Coding_Corner.png",
-		"deploymentUrl": "https://coding-corner.onrender.com/",
-		"sourceUrl": "https://github.com/DylanHalstead/Coding_Corner"
-	},
-	{
-		"id": "6",
-		"title": "AutoBlackjack",
-		"description": "AutoBlackjack is a computer vision application designed to assist users in making informed decisions in the game of Blackjack. Using machine learning techniques and computer vision, AutoBlackjack helps identify the best possible move to make with any hand of Blackjack. This project was built for Marco Scipioni's Computer Vision with Python (DTSC 3000) course at UNC Charlotte.",
-		"date": "2023-12-02",
-		"tags": ["15", "4", "16"],
-		"sortOrder": 60,
-		"imageSrc": "https://storage.googleapis.com/halstead_portfolio_images/AutoBlackjack.png",
-		"sourceUrl": "https://github.com/DylanHalstead/AutoBlackjack"
 	},
 	{
 		"id": "7",

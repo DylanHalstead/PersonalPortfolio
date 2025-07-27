@@ -14,7 +14,7 @@
 <script lang="ts">
 import type { CollectionEntry } from "astro:content";
 import { onMount } from "svelte";
-import ScrollableList from "./ScrollableList.svelte";
+import ScrollableList from "../ScrollableList.svelte";
 
 const PROJECTS_PER_PAGE = 6;
 
@@ -137,7 +137,7 @@ function openModal(project: (typeof resolvedProjects)[0]) {
                 : 'bg-background-900 hover:bg-background-800 text-text-100 border-text-50/25'}"
               on:click={() => toggleTag(tag.id)}
             >
-              <span class="size-6">
+              <span class="size-6 my-auto h-fit">
                 {@html cachedSvgs[tag.data.svgSrc] || cachedSvgs['/tags/default.svg']}
               </span>
               <p class="text-md">
@@ -305,7 +305,7 @@ function openModal(project: (typeof resolvedProjects)[0]) {
       {#if selectedProject?.data.tags}
         {#each selectedProject.data.tags.sort(sortBySortOrder) as tag}
           <div class="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
-            <span class="size-5 sm:size-6">
+            <span class="size-5 sm:size-6 flex items-center justify-center">
               {@html cachedSvgs[tag.data.svgSrc] || cachedSvgs['/tags/default.svg']}
             </span>
             <p class="text-sm sm:text-base">

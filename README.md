@@ -76,6 +76,10 @@ pnpm run build:docker
 # Or manually with Docker
 docker build -t personal-portfolio .
 docker run -p 8080:8080 personal-portfolio
+
+# Build with custom port
+docker build --build-arg PORT=3000 -t personal-portfolio .
+docker run -p 3000:3000 personal-portfolio
 ```
 
 ## 🚀 Deployment

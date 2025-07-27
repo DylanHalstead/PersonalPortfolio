@@ -14,7 +14,7 @@ export default defineConfig({
 	},
 	integrations: [
 		svelte({
-			include: ["**/svelte/*.svelte"],
+			include: ["src/components/svelte/**/*.svelte"],
 		}),
 		sitemap(),
 	],

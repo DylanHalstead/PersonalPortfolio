@@ -6,7 +6,7 @@ events {
 
 http {
   server {
-    listen 8080;
+    listen ${LISTENER_PORT};
     server_name   _;
 
     root   /usr/share/nginx/html;
@@ -34,4 +34,4 @@ http {
             try_files $uri $uri/index.html =404;
     }
   }
-}
+} 

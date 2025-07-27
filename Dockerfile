@@ -15,11 +15,10 @@ COPY --from=dependencies /app/node_modules ./node_modules
 COPY . .
 RUN pnpm run build
 
-# TODO: build nginx conf from port speicifed? 
-# or just statically set it and remove compose file
-# orrrrr just set a different outbound port?
-ARG PORT=443
 FROM nginx:alpine AS runtime
-COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
+ARG LISTENER_PORT=8080
+ENV LISTENER_PORT=$LISTENER_PORT
+COPY ./nginx/nginx.conf.template /tmp/nginx.conf.template
+RUN envsubst '$LISTENER_PORT' < /tmp/nginx.conf.template > /etc/nginx/nginx.conf
 COPY --from=builder /app/dist /usr/share/nginx/html
-EXPOSE $PORT
+EXPOSE $LISTENER_PORT

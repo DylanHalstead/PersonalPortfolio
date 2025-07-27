@@ -16,7 +16,6 @@
   </InteractiveGlowingGrid>
   ```
 -->
-
 <script lang="ts">
 import gsap from "gsap";
 import InertiaPlugin from "gsap/InertiaPlugin";

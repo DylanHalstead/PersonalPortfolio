@@ -144,10 +144,18 @@
 		"type": "Tool"
 	},
 	{
+		"id": "42",
+		"name": "GSAP",
+		"description": "A JavaScript library for creating robust, dynamic animations. GSAP is framework-agnostic, meaning it can be used with various JavaScript frameworks like React, Vue, Angular, or directly within vanilla JavaScript.",
+		"sortOrder": 161,
+		"svgSrc": "/tags/gsap.svg",
+		"type": "Tool"
+	},
+	{
 		"id": "39",
 		"name": "D3",
 		"description": "A JavaScript library for creating custom, dynamic data visualizations.",
-		"sortOrder": 161,
+		"sortOrder": 162,
 		"svgSrc": "/tags/d3.svg",
 		"type": "Tool"
 	},
@@ -155,7 +163,7 @@
 		"id": "41",
 		"name": "p5.js",
 		"description": "A JavaScript library for creating custom, dynamic art/visualizations.",
-		"sortOrder": 162,
+		"sortOrder": 163,
 		"svgSrc": "/tags/p5.svg",
 		"type": "Tool"
 	},
@@ -192,10 +200,18 @@
 		"type": "Cloud"
 	},
 	{
+		"id": "43",
+		"name": "Cloudflare",
+		"description": "A globally distributed network that provides a wide range of internet infrastructure services, primarily focusing on enhancing website performance, security, and reliability",
+		"sortOrder": 201,
+		"svgSrc": "/tags/cloudflare.svg",
+		"type": "Cloud"
+	},
+	{
 		"id": "40",
 		"name": "Vercel",
 		"description": "A platform for building, shipping, and running applications in containers known for it's simplicity and Next/SvelteKit support.",
-		"sortOrder": 201,
+		"sortOrder": 202,
 		"svgSrc": "/tags/vercel.svg",
 		"type": "Cloud"
 	},
