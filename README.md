@@ -1,5 +1,3 @@
-<!-- TODO: update and make... better -->
-
 # Personal Portfolio
 
 My personal website used to be a portfolio showcase; used to show previous work
@@ -7,7 +5,7 @@ and blog content.
 
 ## ✨ Features
 
-- 🚀 **Interactive, fluid animations** with GSAP, Tailwind, and Svelte
+- 🌊 **Interactive, fluid animations** with GSAP, Tailwind, and Svelte
   interactivity
 - 📦 **Static site generation** powered by Astro's island architecture creating
   a fast, performant experience for users
@@ -43,16 +41,16 @@ This project is following the
 └── .github/workflows/          # CI/CD pipelines
 ```
 
-## 🚀 Local Development
+## 🧑‍💻 Local Development
 
-### Prerequisites
+### 📦 Dependencies
 
 - [Node.js >= 22](https://nodejs.org/en/download)
 - [PNPM >= 10](https://pnpm.io/installation)
 - [Docker](https://docs.docker.com/engine/install/)
   - Optional, but recommended for containerized development
 
-### Quick Start
+### 🐣 Quick Start
 
 1. **Install dependencies**
    ```bash
@@ -65,7 +63,7 @@ This project is following the
    ```
    The site will be available at `http://localhost:4321`
 
-### Docker Development
+### 🐳 Docker
 
 For containerized development:
 
@@ -92,9 +90,3 @@ CI/CD is ran on a
 The main runner is hosted on my personal server, and the site's container is
 proxied through a
 [Cloudflare tunnel](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/).
-
-## 📄 License
-
-This project is licensed under the [GNU General Public License v3.0](LICENSE).
-The TLDR being feel free to use this code as reference, inspiration, or copy
-what you would like to use! _(as long as it's not for commercialization)_
