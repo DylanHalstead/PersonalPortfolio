@@ -196,7 +196,7 @@ function openModal(project: (typeof resolvedProjects)[0]) {
     <div class="flex justify-center mt-8 text-text-100/80">
       <button
         class="p-3 rounded-l hover:text-primary-100 cursor-pointer disabled:opacity-50 disabled:cursor-default"
-        on:click={() => currentPage = 1}
+        on:click={() => currentPage = Math.max(1, currentPage - 1)}
         aria-label="Previous Page"
         disabled={currentPage === 1}
       >
@@ -218,7 +218,7 @@ function openModal(project: (typeof resolvedProjects)[0]) {
       {/each}
       <button
         class="p-3 rounded-r hover:text-primary-100 cursor-pointer disabled:opacity-50 disabled:cursor-default"
-        on:click={() => currentPage = totalPages}
+        on:click={() => currentPage = Math.min(totalPages, currentPage + 1)}
         aria-label="Next Page"
         disabled={currentPage === totalPages}
       >
