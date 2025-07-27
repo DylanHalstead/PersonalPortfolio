@@ -232,7 +232,7 @@ function openModal(project: (typeof resolvedProjects)[0]) {
 
 <dialog
   bind:this={dialog}
-  class="bg-background-800 text-text-100 rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto p-0 backdrop:bg-black/50 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 mx-4 sm:mx-8 md:mx-0 scale-0 transition-transform duration-200 ease-out"
+  class="bg-background-800 text-text-100 rounded-lg max-w-2xl w-[calc(100vw-2rem)] sm:w-[calc(100vw-4rem)] md:w-full max-h-[90vh] overflow-y-auto p-0 backdrop:bg-black/50 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-0 transition-transform duration-200 ease-out"
   on:click|stopPropagation={(e) => {
     if (e.target === dialog) {
       dialog.close();
