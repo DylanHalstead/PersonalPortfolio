@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "lint": "biome check",
+    "lint:fix": "biome check --write",
     "build:docker": "docker compose -f docker-compose.yml up --build",
     "prepare": "husky || true"
   },
