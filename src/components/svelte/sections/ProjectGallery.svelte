@@ -80,7 +80,7 @@ $: sortedTags = [...tags].sort(sortBySortOrder);
 let selectedTags: string[] = [];
 $: sortedProjects =
 	selectedTags.length === 0
-		? resolvedProjects
+		? [...resolvedProjects].sort((a, b) => a.data.sortOrder - b.data.sortOrder)
 		: [...resolvedProjects].sort((a, b) => {
 				const aMatches = a.data.tags.filter((tag) =>
 					selectedTags.includes(tag.id),
@@ -88,10 +88,12 @@ $: sortedProjects =
 				const bMatches = b.data.tags.filter((tag) =>
 					selectedTags.includes(tag.id),
 				).length;
-				// Order by number of matches, then by sortOrder
-				const aScore = aMatches + 1 / (a.data.sortOrder + 1);
-				const bScore = bMatches + 1 / (b.data.sortOrder + 1);
-				return bScore - aScore;
+
+				if (aMatches !== bMatches) {
+					return bMatches - aMatches;
+				}
+
+				return a.data.sortOrder - b.data.sortOrder;
 			});
 
 let currentPage = 1;

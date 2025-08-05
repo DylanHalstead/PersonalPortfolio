@@ -71,52 +71,14 @@
 		"sourceUrl": "https://github.com/DylanHalstead/Coding_Corner"
 	},
 	{
-		"id": "13",
-		"title": "Personal Website",
-		"description": "The site you are currently on! Built with Astro, Svelte, and Tailwind, this is a static site I use to showcase my projects and skills (as well as any articles I write).",
-		"date": "2025-07-02",
-		"tags": [
-			"2",
-			"8",
-			"9",
-			"22",
-			"28",
-			"31",
-			"32",
-			"34",
-			"35",
-			"42",
-			"43",
-			"18"
-		],
-		"sortOrder": 70,
-		"imageSrc": "https://storage.googleapis.com/halstead_portfolio_images/Personal_Website.webp",
-		"sourceUrl": "https://github.com/DylanHalstead/PersonalPortfolio",
-		"deploymentUrl": "https://dylanhalstead.com/"
-	},
-	{
-		"id": "4",
-		"title": "Old Personal Portfolio",
-		"date": "2023-12-02",
-		"description": "My Original Personal Portfolio. A simple SPA where I can show users what cool projects I've worked on. Learned a lot about cloud providers (specifically GCP) and their services getting this running. Learned things like DNS mapping between GCP and Cloudflare, setting up buckets to host images, and CI/CD for docker/container automatic deployment.",
-		"tags": [
-			"20",
-			"11",
-			"24",
-			"18",
-			"40",
-			"13",
-			"3",
-			"28",
-			"34",
-			"35",
-			"32",
-			"31"
-		],
+		"id": "9",
+		"title": "2D Ray Casting Demo",
+		"description": "I needed to make some code to create 2D light simulation(s) with accurate calculations. Utilizes the p5.js library and handles calculations from Matrix and Vector Manipulation.",
+		"date": "2022-07-02",
+		"tags": ["41", "3", "34"],
 		"sortOrder": 60,
-		"imageSrc": "https://storage.googleapis.com/halstead_portfolio_images/Personal_Portfolio.png",
-		"sourceUrl": "https://github.com/DylanHalstead/personal-portfolio",
-		"deploymentUrl": "http://old.dylanhalstead.com/"
+		"imageSrc": "https://storage.googleapis.com/halstead_portfolio_images/2D_Raycasting.png",
+		"sourceUrl": "https://github.com/DylanHalstead/2d-raycasting"
 	},
 	{
 		"id": "7",
@@ -140,14 +102,52 @@
 		"sourceUrl": "https://github.com/DylanHalstead/Charlotte-Cinemaholics"
 	},
 	{
-		"id": "9",
-		"title": "2D Ray Casting Demo",
-		"description": "I needed to make some code to create 2D light simulation(s) with accurate calculations. Utilizes the p5.js library and handles calculations from Matrix and Vector Manipulation.",
-		"date": "2022-07-02",
-		"tags": ["41", "3", "34"],
+		"id": "13",
+		"title": "Personal Website",
+		"description": "The site you are currently on! Built with Astro, Svelte, and Tailwind, this is a static site I use to showcase my projects and skills (as well as any articles I write).",
+		"date": "2025-07-02",
+		"tags": [
+			"2",
+			"8",
+			"9",
+			"22",
+			"28",
+			"31",
+			"32",
+			"34",
+			"35",
+			"42",
+			"43",
+			"18"
+		],
 		"sortOrder": 90,
-		"imageSrc": "https://storage.googleapis.com/halstead_portfolio_images/2D_Raycasting.png",
-		"sourceUrl": "https://github.com/DylanHalstead/2d-raycasting"
+		"imageSrc": "https://storage.googleapis.com/halstead_portfolio_images/Personal_Website.webp",
+		"sourceUrl": "https://github.com/DylanHalstead/PersonalPortfolio",
+		"deploymentUrl": "https://dylanhalstead.com/"
+	},
+	{
+		"id": "4",
+		"title": "Old Personal Portfolio",
+		"date": "2023-12-02",
+		"description": "My Original Personal Portfolio. A simple SPA where I can show users what cool projects I've worked on. Learned a lot about cloud providers (specifically GCP) and their services getting this running. Learned things like DNS mapping between GCP and Cloudflare, setting up buckets to host images, and CI/CD for docker/container automatic deployment.",
+		"tags": [
+			"20",
+			"11",
+			"24",
+			"18",
+			"40",
+			"13",
+			"3",
+			"28",
+			"34",
+			"35",
+			"32",
+			"31"
+		],
+		"sortOrder": 100,
+		"imageSrc": "https://storage.googleapis.com/halstead_portfolio_images/Personal_Portfolio.png",
+		"sourceUrl": "https://github.com/DylanHalstead/personal-portfolio",
+		"deploymentUrl": "http://old.dylanhalstead.com/"
 	},
 	{
 		"id": "10",
@@ -155,7 +155,7 @@
 		"description": "My technical assessment for my internship at RVO Health, bot-o-matic is a simple react app where you can race different types of robot. Taught myself the basics of React and Express in 24 hours to meet the deadline. Queue up robots at the same time for a head-to-head bout to see who's the best bot! Robots have varying attributes and skills that are better for specific tasks. Strategize on the best combination of robots and run them in a race! Every raced bot is put into the leaderboard where you can see where you rank again friends (or rivals).",
 		"date": "2022-09-02",
 		"tags": ["7", "20", "18", "13", "31", "3", "34", "35", "32", "29"],
-		"sortOrder": 100,
+		"sortOrder": 110,
 		"imageSrc": "https://storage.googleapis.com/halstead_portfolio_images/Bot_O_Matic.png",
 		"deploymentUrl": "https://bot-o-matic-vgo4hnokkq-ue.a.run.app/"
 	},
@@ -165,7 +165,7 @@
 		"description": "A company website overhaul made during my internship with Polychord. My first time with design work, mobile friendly webpages, and UI/UX.",
 		"date": "2022-09-02",
 		"tags": ["3", "34", "35", "32", "33"],
-		"sortOrder": 110,
+		"sortOrder": 120,
 		"imageSrc": "https://storage.googleapis.com/halstead_portfolio_images/PolyChord_Website.png",
 		"sourceUrl": "https://github.com/DylanHalstead/PolyChord-Website"
 	},
@@ -175,7 +175,7 @@
 		"description": "Despite an increasing need for computer scientists in the world, as of 2021, only 5% of high school students study computer science. While many students will enroll into computer science programs in college, this lack of prior educational opportunities can make the transition into the world of programming difficult. We set out to create an app that can make the process of learning to code easier for students, by specifically visualizing what could otherwise be complicated data structures to beginners.",
 		"date": "2023-01-02",
 		"tags": ["11", "12", "34", "35", "31", "29", "3", "4"],
-		"sortOrder": 120,
+		"sortOrder": 130,
 		"imageSrc": "https://storage.googleapis.com/halstead_portfolio_images/Visify.jpg",
 		"sourceUrl": "https://github.com/gitthing03/HoyaHacks2023"
 	}

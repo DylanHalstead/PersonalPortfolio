@@ -80,14 +80,6 @@
 		"type": "Framework"
 	},
 	{
-		"id": "10",
-		"name": "Nuxt",
-		"description": "A full-stack framework for building server-side rendered (SSR) web applications using Vue.js.",
-		"sortOrder": 100,
-		"svgSrc": "/tags/nuxt.svg",
-		"type": "Framework"
-	},
-	{
 		"id": "11",
 		"name": "Vue",
 		"description": "A front-end framework for building user interfaces/Single Page Applications with a focus on simplicity and ease of use.",
