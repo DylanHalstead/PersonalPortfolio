@@ -78,23 +78,20 @@ function sortBySortOrder<T extends { data: { sortOrder: number } }>(
 $: sortedTags = [...tags].sort(sortBySortOrder);
 
 let selectedTags: string[] = [];
-$: sortedProjects =
-	selectedTags.length === 0
-		? [...resolvedProjects].sort((a, b) => a.data.sortOrder - b.data.sortOrder)
-		: [...resolvedProjects].sort((a, b) => {
-				const aMatches = a.data.tags.filter((tag) =>
-					selectedTags.includes(tag.id),
-				).length;
-				const bMatches = b.data.tags.filter((tag) =>
-					selectedTags.includes(tag.id),
-				).length;
+$: sortedProjects = [...resolvedProjects].sort((a, b) => {
+	const aMatches = a.data.tags.filter((tag) =>
+		selectedTags.includes(tag.id),
+	).length;
+	const bMatches = b.data.tags.filter((tag) =>
+		selectedTags.includes(tag.id),
+	).length;
 
-				if (aMatches !== bMatches) {
-					return bMatches - aMatches;
-				}
+	if (aMatches !== bMatches) {
+		return bMatches - aMatches;
+	}
 
-				return a.data.sortOrder - b.data.sortOrder;
-			});
+	return sortBySortOrder(a, b);
+});
 
 let currentPage = 1;
 $: totalPages = Math.ceil(sortedProjects.length / PROJECTS_PER_PAGE);
