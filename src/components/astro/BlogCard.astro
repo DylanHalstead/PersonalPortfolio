@@ -94,8 +94,8 @@ const calculateReadingTime = (content: string) => {
           <Clock class:list={['size-5', 'lg:size-6', textSecondary]} />
           <p class:list={[textSecondary, 'text-base', 'lg:text-lg', 'font-light', 'opacity-90']}>{post.body ? calculateReadingTime(post.body) : ''} min read</p>
         </div>
-        <a href={`/blog/${post.id}`} aria-label={`Read ${post.data.title}`} class:list={[bgSecondary, 'rounded-lg', 'p-2.5', 'lg:p-1.5', 'group', 'transition-all', 'duration-200']}>
-          <Arrow class:list={['size-6', textPrimary, 'group-hover:-rotate-45', 'group-hover:scale-120', 'transition-all', 'duration-200']} />
+        <a href={`/blog/${post.id}`} aria-label={`Read ${post.data.title}`} class:list={[bgSecondary, 'rounded-lg', 'p-2.5', 'lg:p-1.5', 'group', 'transition-transform', 'duration-200']}>
+          <Arrow class:list={['size-6', textPrimary, 'group-hover:-rotate-45', 'group-hover:scale-120', 'duration-200']} />
         </a>
       </div>
     </div>

@@ -182,7 +182,7 @@ onMount(() => {
   
   <span
     bind:this={textElement}
-    class="inline-block text-nowrap -z-10 transition-all duration-300 ease-in-out"
+    class="inline-block text-nowrap -z-10 transition-[translate,width,opacity] duration-300 ease-in-out"
   >
     {currentText}
   </span>

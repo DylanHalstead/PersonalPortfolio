@@ -14,27 +14,27 @@ const isBlogPage = currentPath === "/blog/";
         <span class="sr-only">Toggle menu</span>
         <div>
           <div class="grid justify-items-center items-center gap-.5 h-6 w-6 ml-auto">
-            <span class="hamburger-line h-0.5 w-6 rounded-full bg-text-50 transition-all"></span>
-            <span class="hamburger-line h-0.5 w-6 rounded-full bg-text-50 transition-all"></span>
-            <span class="hamburger-line h-0.5 w-6 rounded-full bg-text-50 transition-all"></span>
+            <span class="hamburger-line h-0.5 w-6 rounded-full bg-text-50 transition-[transform,opacity]"></span>
+            <span class="hamburger-line h-0.5 w-6 rounded-full bg-text-50 transition-[transform,opacity]"></span>
+            <span class="hamburger-line h-0.5 w-6 rounded-full bg-text-50 transition-[transform,opacity]"></span>
           </div>
         </div>
       </button>
     </div>
-    <nav aria-labelledby="header-navigation" class="flex max-h-0 w-full flex-col items-center sm:justify-end justify-between overflow-hidden transition-all duration-300 sm:max-h-full sm:flex-row sm:items-start" id="mobile-nav">
+    <nav aria-labelledby="header-navigation" class="flex max-h-0 w-full flex-col items-center sm:justify-end justify-between overflow-hidden transition-[color,font-weight] duration-300 sm:max-h-full sm:flex-row sm:items-start" id="mobile-nav">
       <h2 class="sr-only" id="header-navigation">Header navigation</h2>
       <ul class="flex flex-col items-center sm:flex-row my-autotext-primary-200 cursor-default w-full sm:w-auto text-lg">
         <li class="w-full sm:w-auto border-b border-text-50/10 sm:border-b-0 sm:px-2">
-          <a href={isHomePage ? '#hero' : '/'} id="nav-home" class:list={['block w-full text-center py-2 sm:py-2 sm:px-4 sm:block sm:w-auto transition-all duration-150', !isHomePage ? 'text-stone-400 hover:text-primary-300' : 'text-primary-200 font-bold']}>Home</a>
+          <a href={isHomePage ? '#hero' : '/'} id="nav-home" class:list={['block w-full text-center py-2 sm:py-2 sm:px-4 sm:block sm:w-auto duration-150', !isHomePage ? 'text-stone-400 hover:text-primary-300' : 'text-primary-200 font-bold']}>Home</a>
         </li>
         <li class="w-full sm:w-auto border-b border-text-50/10 sm:border-b-0 sm:px-2">
-          <a href="/#about" id="nav-about" class:list={['block w-full text-center py-2 sm:py-2 sm:px-4 sm:block sm:w-auto transition-all duration-150', !isHomePage ? 'text-stone-400 hover:text-primary-300' : 'text-primary-200 font-bold']}>About Me</a>
+          <a href="/#about" id="nav-about" class:list={['block w-full text-center py-2 sm:py-2 sm:px-4 sm:block sm:w-auto duration-150', !isHomePage ? 'text-stone-400 hover:text-primary-300' : 'text-primary-200 font-bold']}>About Me</a>
         </li>
         <li class="w-full sm:w-auto border-b border-text-50/10 sm:border-b-0 sm:px-2">
-          <a href="/#projects" id="nav-projects" class:list={['block w-full text-center py-2 sm:py-2 sm:px-4 sm:block sm:w-auto transition-all duration-150', !isHomePage ? 'text-stone-400 hover:text-primary-300' : 'text-primary-200 font-bold']}>Projects</a>
+          <a href="/#projects" id="nav-projects" class:list={['block w-full text-center py-2 sm:py-2 sm:px-4 sm:block sm:w-auto duration-150', !isHomePage ? 'text-stone-400 hover:text-primary-300' : 'text-primary-200 font-bold']}>Projects</a>
         </li>
         <li class="w-full sm:w-auto sm:px-2">
-          <a href="/blog" id="nav-blog" class:list={['block w-full text-center py-2 sm:py-2 sm:px-4 sm:block sm:w-auto transition-all duration-150', !isBlogPage ? 'text-stone-400 hover:text-primary-300' : 'text-primary-200 font-bold']}>Blog</a>
+          <a href="/blog" id="nav-blog" class:list={['block w-full text-center py-2 sm:py-2 sm:px-4 sm:block sm:w-auto duration-150', !isBlogPage ? 'text-stone-400 hover:text-primary-300' : 'text-primary-200 font-bold']}>Blog</a>
         </li>
       </ul>
     </nav>

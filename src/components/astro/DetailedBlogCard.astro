@@ -27,7 +27,7 @@ function formatDate(date: Date): string {
 }
 ---
 
-<a href={`/blog/${post.id}`} class="hover:scale-105 transition-all duration-300">
+<a href={`/blog/${post.id}`} class="hover:scale-105 transition-transform duration-300">
   <article class="rounded-lg border border-text-50/25 bg-stone-900 px-4 pt-10 pb-4 ">
     {post.data.updatedDate ? (
       <time 
@@ -43,7 +43,7 @@ function formatDate(date: Date): string {
       {post.data.title}
     </h2>
 
-    <div class="mt-4 flex flex-wrap gap-1">
+    <div class="mt-4 flex flex-wrap gap-1.5">
       {post.data.tags.map((tag) => (
         <span
           class="rounded-full bg-primary-100 px-2.5 py-0.5 text-sm whitespace-nowrap text-primary-600"
