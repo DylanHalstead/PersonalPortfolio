@@ -141,11 +141,12 @@ simpler!).
 
 ## Metrics
 
-- First Contentful Paint: 2.4s → 1.2s
-- Largest Contentful Paint: 6.1s → 1.3s
-- Speed Index: 2.3s → 1.2s
-- JS bundle: 162.8 KB → 189.3 KB (with _much_ more JS and no offloaded backend!)
-- Docker Image Size: 220.14 MB → 80.51 MB
+- First Contentful Paint: 2.4s → **1.2s**
+- Largest Contentful Paint: 6.1s → **1.3s**
+- Speed Index: 2.3s → **1.2s**
+- JS bundle: 162.8 KB → **189.3 KB** (with _much_ more JS and no offloaded
+  backend!)
+- Docker Image Size: 220.14 MB → **80.51 MB**
 
 The most valuable lesson wasn't about any specific technology, but rather about
 choosing the right tool for the job. My first site was over-engineered in areas
