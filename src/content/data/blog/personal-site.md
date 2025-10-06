@@ -1,6 +1,6 @@
 ---
 title: "How I Built This Site"
-pubDate: "2025-08-17"
+pubDate: "2025-10-07"
 tags: ["Astro", "Svelte", "Tailwind", "Cloudflare", "Docker", "Github Actions"]
 ---
 
